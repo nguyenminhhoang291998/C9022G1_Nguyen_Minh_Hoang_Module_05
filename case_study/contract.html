@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="bootstrap-5.3.0-alpha1-dist/css/bootstrap.css">
+</head>
+<body>
+
+<h2 style="margin-left: 45%;margin-top: 1%">Contract</h2>
+
+<div class="table-list">
+    <div class="table-responsive">
+        <table class="table table-striped w-100" id="tableContract">
+            <thead style="vertical-align: top; text-align: center">
+            <tr class="text-center">
+                <th scope="col">#</th>
+                <th scope="col">Facility Name</th>
+                <th scope="col">Customer Name</th>
+                <th scope="col">Start day</th>
+                <th scope="col">End day</th>
+                <th scope="col">Deposit</th>
+                <th scope="col">Total cost</th>
+                <th scope="col">Attach facility</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>1</td>
+                <td>Room 3</td>
+                <td>Nguyễn Văn An</td>
+                <td>09/02/2022</td>
+                <td>19/02/2022</td>
+                <td>400000</td>
+                <td>2000000</td>
+                <td>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#newAttachFacilityModal">+
+                    </button>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#attachFacilityList">
+                        Attach facility list
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Villa 3</td>
+                <td>Nguyễn Thành</td>
+                <td>09/02/2022</td>
+                <td>19/02/2022</td>
+                <td>300000</td>
+                <td>4000000</td>
+                <td>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#newAttachFacilityModal">+
+                    </button>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#attachFacilityList">
+                        Attach facility list
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Villa 1</td>
+                <td>Nguyễn Thuận</td>
+                <td>09/02/2022</td>
+                <td>19/02/2022</td>
+                <td>0</td>
+                <td>2000000</td>
+                <td>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#newAttachFacilityModal">+
+                    </button>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#attachFacilityList">
+                        Attach facility list
+                    </button>
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-10">
+        <button style="margin-left: 53%" type="button" class="btn btn-success" data-bs-toggle="modal"
+                data-bs-target="#addModal">
+            Add New Contract
+        </button>
+    </div>
+    <div class="col-md-2">
+        <button class="btn btn-primary" id="btnPre">&laquo;</button>
+        <button class="btn btn-primary">&raquo;</button>
+    </div>
+</div>
+<!--modal add new contract-->
+<div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" style="text-align: center">New Contract</h5>
+            </div>
+            <div class="modal-body m-0 p-0">
+
+                <form class="form-horizontal" >
+
+                    <div class="row form-group align-items-center m-2">
+                        <div class=" col-sm-4">
+                            <label class="control-label" for="startDate">Start date:</label></div>
+                        <div class="col-sm-8">
+                            <input type="date" class="form-control" id="startDate">
+                        </div>
+                    </div>
+
+                    <div class="row form-group align-items-center m-2">
+                        <div class=" col-sm-4">
+                            <label class="control-label" for="endDate">End date:</label></div>
+                        <div class="col-sm-8">
+                            <input type="date" class="form-control" id="endDate">
+                            <p class="form-control border-0 text-danger" style="display: none;" id="endDateError">Ngày
+                                kết thúc phải lớn hơn ngày bắt đầu!</p>
+                        </div>
+                    </div>
+
+                    <div class="row form-group align-items-center m-2">
+                        <div class=" col-sm-4">
+                            <label class="control-label" for="deposit">Deposit:</label></div>
+                        <div class="col-sm-8">
+                            <input required type="number" class="form-control"
+                                   id="deposit">
+                        </div>
+                    </div>
+
+                    <div class="row form-group align-items-center m-2">
+                        <div class=" col-sm-4">
+                            <label class="control-label" for="totalCost">Total cost:</label></div>
+                        <div class="col-sm-8">
+                            <input class="form-control bg-light" id="totalCost" readonly>
+                        </div>
+                    </div>
+
+                    <div class="row form-group align-items-center m-2">
+                        <div class=" col-sm-4">
+                            <label class="control-label">Employee:</label></div>
+                        <div class="col-sm-8">
+                            <p class="form-control" id="employeeId" readonly>Chọn Nhân viên</p>
+                        </div>
+                    </div>
+
+                    <div class="row form-group align-items-center m-2">
+                        <div class=" col-sm-4">
+                            <label class="control-label">Customers:</label></div>
+                        <div class="col-sm-8">
+                            <select class="form-control" id="customerId">
+                                <option value="0" disabled selected>Chọn khách hàng</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row form-group align-items-center m-2">
+                        <div class=" col-sm-4">
+                            <label class="control-label">Service:</label></div>
+                        <div class="col-sm-8">
+                            <select class="form-control" id="facilityId">
+                                <option value="0" disabled selected>Chọn dịch vụ</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row form-group align-items-center m-2">
+                        <div class=" col-sm-4">
+                            <label class="control-label" for="btnShowListAttachFacility">Attach facility:</label></div>
+                        <div class="col-sm-8">
+
+                            <button class="btn btn-primary mx-4" type="button" id="btnShowListAttachFacility"
+                                    onclick="showListAttachFacility()">+
+                            </button>
+                            <div style="border: none; display:none" id="listAttachFacility" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="d-flex justify-content-center">
+                            <button type="button" class="btn btn-secondary m-1" data-bs-dismiss="modal">Cancel
+                            </button>
+                            <button type="button" data-bs-dismiss="modal"
+                                    id="buttonCreate" class="btn btn-primary m-1">Create contract
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--  modal attach show Facility List-->
+<div class="modal fade" id="attachFacilityList" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Attach Facility List</h5>
+            </div>
+
+            <div class="modal-body p-3">
+                <div class="row">
+                    <div class="col-md-3 border-end border-bottom text-center text-bg-primary">#</div>
+                    <div class="col-md-6 border-end border-bottom text-center text-bg-primary">Name</div>
+                    <div class="col-md-3 border-end border-bottom text-center text-bg-primary">Quantity</div>
+                </div>
+
+                <div id="bodyDiv"></div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Ok
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--modal add contract detail-->
+<div class="modal fade" id="newAttachFacilityModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form class="form-horizontal" action="/contract/addContractDetail">
+                <div class="modal-header d-flex justify-content-center">
+                    <span>Add Attach Facility Into Contract </span>
+                    <input id="contractId"
+                           style="width: 20px;border: none;text-align: center"/>
+                    <input class="text-primary" id="customerName" style="width: 150px;border: none;text-align: center"/>
+                </div>
+
+                <div class="modal-body m-0 p-0">
+                    <div class="row form-group align-items-center m-2">
+                        <div class=" col-sm-4">
+                            <label class="control-label">Attach Facility:</label></div>
+                        <div class="col-sm-8">
+                            <select class="form-control" name="idAttachFacility">
+                                <option disabled value="0">Chọn dịch vụ đi kèm</option>
+
+
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row form-group align-items-center m-2">
+                        <div class=" col-sm-4">
+                            <label class="control-label">Quantity:</label></div>
+                        <div class="col-sm-8">
+                            <input required pattern="^[1-9]\d*$" title="Số lượng phải là số nguyên dương" type="number"
+                                   min="1" value="1" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="d-flex justify-content-center">
+                            <button type="button" class="btn btn-secondary m-1" data-bs-dismiss="modal">Cancel
+                            </button>
+                            <button type="submit" class="btn btn-primary m-1">Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    function showAttachFacility(id, customerName) {
+        document.getElementById("contractId").value = id;
+        document.getElementById("customerName").value = customerName;
+    }
+
+    // // hiển thị list dịch vụ đi kèm của thêm hợp đồng mới
+    function showListAttachFacility() {
+        if (document.getElementById("listAttachFacility").style.display == 'block') {
+            document.getElementById("listAttachFacility").style.display = 'none';
+        } else {
+            document.getElementById("listAttachFacility").style.display = 'block'
+        }
+    }
+
+</script>
+<script src="bootstrap-5.3.0-alpha1-dist/js/bootstrap.js"></script>
+</body>
+</html>
