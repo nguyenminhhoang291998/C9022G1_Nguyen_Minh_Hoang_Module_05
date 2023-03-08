@@ -1,0 +1,18 @@
+.facility-head{
+  position: relative;
+}
+
+.facility-head img {
+  z-index: 1;
+}
+
+.facility-head p {
+  text-align: center;
+  color: white;
+  font-size: 100px;
+  position: absolute;
+  z-index: 2;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+}
