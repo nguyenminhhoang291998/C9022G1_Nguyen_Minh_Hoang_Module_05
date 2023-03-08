@@ -12,4 +12,30 @@ export class FacilityComponent implements OnInit {
   ngOnInit(): void {
   }
 
+   addVilla() {
+    // document.getElementById('facilityTypeId').value = 1;
+    document.getElementById('standardRoom').style.display = 'block';
+    document.getElementById('description').style.display = 'block';
+    document.getElementById('poolArea').style.display = 'block';
+    document.getElementById('numberOfFloor').style.display = 'block';
+    document.getElementById('facilityFree').style.display = 'none';
+  }
+
+   addHouse() {
+    // document.getElementById('facilityTypeId').value = 2;
+    document.getElementById('standardRoom').style.display = 'block';
+    document.getElementById('description').style.display = 'block';
+    document.getElementById('poolArea').style.display = 'none';
+    document.getElementById('numberOfFloor').style.display = 'block';
+    document.getElementById('facilityFree').style.display = 'none';
+  }
+
+   addRoom() {
+    // document.getElementById('facilityTypeId').value = 3;
+    document.getElementById('standardRoom').style.display = 'none';
+    document.getElementById('description').style.display = 'none';
+    document.getElementById('poolArea').style.display = 'none';
+    document.getElementById('numberOfFloor').style.display = 'none';
+    document.getElementById('facilityFree').style.display = 'block';
+  }
 }

@@ -53,6 +53,13 @@
   </div>
 </div>
 
+<div class="row">
+  <button type="button"
+          class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#addFacilityModal">
+    Add new Facility
+  </button>
+</div>
+
 <div class='modal fade' id="editFacilityModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -186,3 +193,119 @@
     </div>
   </div>
 </div>
+
+<div class="modal fade"
+     id="addFacilityModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header justify-content-center m-2 p-0">
+        <h3 class="text-center text-primary">Facility</h3>
+      </div>
+      <form class="form-horizontal" action="/facility/save" method="post">
+        <div class="modal-body px-2 py-0">
+          <div class="m-2 row">
+            <label class="col-sm-4 form-label">Facility Type</label>
+            <div class="col-sm-8 justify-content-center">
+              <div style="margin-left: 10%">
+                <input hidden type="text" id="facilityTypeId">
+                <button type="button" class="btn btn-primary w-25 mx-1" (click)="addVilla()">Villa</button>
+                <button type="button" class="btn btn-primary w-25 mx-1" (click)="addHouse()">House</button>
+                <button type="button" class="btn btn-primary w-25 mx-1" (click)="addRoom()">Room</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="m-2 row">
+            <label class="col-sm-4 col-form-label">Facility Name</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" id="name">
+
+            </div>
+          </div>
+
+          <div class="m-2 row">
+            <label class="col-sm-4 col-form-label">Area</label>
+            <div class="col-sm-8">
+              <input type="number" class="form-control" id="area">
+            </div>
+          </div>
+
+          <div class="m-2 row">
+            <label class="col-sm-4 col-form-label">Cost</label>
+            <div class="col-sm-8">
+              <input  class="form-control" id="cost" >
+
+            </div>
+          </div>
+
+          <div class="m-2 row">
+            <label class="col-sm-4 col-form-label">Max People</label>
+            <div class="col-sm-8">
+              <input type="number" class="form-control" id="maxPeople" >
+            </div>
+          </div>
+
+          <div class="m-2 row">
+            <label class="col-sm-4 col-form-label">Rent Type Name</label>
+            <div class="col-sm-8">
+              <select type="number" class="form-control" >
+              </select>
+            </div>
+          </div>
+
+          <div id="standardRoom">
+            <div class="m-2 row">
+              <label class="col-sm-4 col-form-label">Standard Room</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control">
+              </div>
+            </div>
+          </div>
+
+          <div id="description">
+            <div class="m-2 row align-items-center">
+              <label class="col-sm-4 col-form-label">Description Other Convenience</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control">
+              </div>
+            </div>
+          </div>
+
+          <div id="poolArea">
+            <div class="m-2 row">
+              <label class="col-sm-4 col-form-label">Pool area</label>
+              <div class="col-sm-8">
+                <input type="number" value="0" class="form-control">
+              </div>
+            </div>
+          </div>
+
+          <div id="numberOfFloors">
+            <div class="m-2 row align-items-center">
+              <label class="col-sm-4 col-form-label">Number Of Floors</label>
+              <div class="col-sm-8">
+                <input type="number" class="form-control">
+
+              </div>
+            </div>
+          </div>
+          <div id="facilityFree">
+            <div class="m-2 row">
+              <label class="col-sm-4 col-form-label">Facility free</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control">
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Add</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
