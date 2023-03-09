@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output, Input, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output, Input, SimpleChanges, OnChanges} from '@angular/core';
 import {IRatingUnit} from '../irating-unit';
 
 @Component({
@@ -9,34 +9,24 @@ import {IRatingUnit} from '../irating-unit';
 export class RatingBarComponent implements OnInit {
 
   @Input()
-  max = 10;
+  max;
   @Input()
-  ratingValue = 5;
+  ratingValue;
   @Input()
   showRatingValue = true;
 
-  @Output()
-  rateChange = new EventEmitter<number>();
-
   ratingUnits: Array<IRatingUnit> = [];
 
-  constructor() { }
-
-  ngOnChanges(changes: SimpleChanges) {
-    if ('max' in changes) {
-      let max = changes.max.currentValue;
-      max = typeof max === 'undefined' ? 5 : max;
-      this.max = max;
-      this.calculate(max, this.ratingValue);
-    }
+  constructor() {
   }
 
   calculate(max, ratingValue) {
-    this.ratingUnits = Array.from({length: max},
-      (_, index) => ({
-        value: index + 1,
-        active: index < ratingValue
-      }));
+    for (let i = 0; i < max; i++) {
+      this.ratingUnits.push({
+        value: i + 1,
+        active: i < ratingValue
+      });
+    }
   }
 
   ngOnInit() {
@@ -45,12 +35,15 @@ export class RatingBarComponent implements OnInit {
 
   select(index) {
     this.ratingValue = index + 1;
-    this.ratingUnits.forEach((item, idx) => item.active = idx < this.ratingValue);
-    this.rateChange.emit(this.ratingValue);
+    this.enter(index + 1);
   }
+
   enter(index) {
-    this.ratingUnits.forEach((item, idx) => item.active = idx <= index);
+    for (let i = 0; i <= index; i++) {
+      this.ratingUnits[i].active = true;
+    }
   }
+
   reset() {
     this.ratingUnits.forEach((item, idx) => item.active = idx < this.ratingValue);
   }
