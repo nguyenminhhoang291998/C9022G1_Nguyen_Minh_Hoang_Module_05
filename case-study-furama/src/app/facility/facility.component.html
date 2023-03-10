@@ -4,47 +4,16 @@
 </div>
 
 <div class="d-flex flex-wrap" style="padding: 10px 30px">
-  <div class="col-md-4" style="flex-basis: 25%">
+  <div class="col-md-4" style="flex-basis: 25%" *ngFor="let facility of facilityList, index as i">
     <div style="padding: 10px">
       <div class="card" style="padding: 5px">
-        <img src="/assets/img/faci1.jpg"/>
+        <img src="{{facility.img}}"/>
         <div class="card-body">
-          <h5 class="card-title">Facility 1</h5>
+          <h5 class="card-title">{{facility.name}}</h5>
           <p class="card-text"></p>
           <button  type="button" class="btn btn-primary"
                    data-bs-toggle="modal"
                    data-bs-target="#editFacilityModal">Edit</button>
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                  data-bs-target="#deleteFacilityModal">Delete</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-4" style="flex-basis: 25%">
-    <div style="padding: 10px">
-      <div class="card" style="padding: 5px">
-        <img src="/assets/img/faci2.jpg"/>
-        <div class="card-body">
-          <h5 class="card-title">Facility 2</h5>
-          <p class="card-text"></p>
-          <button  type="button" class="btn btn-primary"
-                   data-bs-toggle="modal"
-                   data-bs-target="#editFacilityModal">Edit</button>
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                  data-bs-target="#deleteFacilityModal">Delete</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-4" style="flex-basis: 25%">
-    <div style="padding: 10px">
-      <div class="card" style="padding: 5px">
-        <img src="/assets/img/faci3.jpg"/>
-        <div class="card-body">
-          <h5 class="card-title">Facility 3</h5>
-          <p class="card-text"></p>
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                  data-bs-target="#editFacilityModal">Edit</button>
           <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                   data-bs-target="#deleteFacilityModal">Delete</button>
         </div>

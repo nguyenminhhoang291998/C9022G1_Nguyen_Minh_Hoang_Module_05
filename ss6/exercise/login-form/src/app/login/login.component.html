@@ -7,6 +7,6 @@
   <p>Password</p>
   <input type="password" formControlName="password">
   <div *ngIf="loginForm.controls.password?.errors?.required && loginForm.controls.password?.touched">Không được để trống</div>
-  <div *ngIf="loginForm.controls.password?.errors?.minLength && loginForm.controls.password?.touched">Ít nhất 6 ký tự</div>
+  <p *ngIf="loginForm.controls.password?.errors?.minLength && loginForm.controls.password?.touched">Ít nhất 6 ký tự</p>
   <br><button [disabled]="loginForm.invalid" type="submit">Login</button>
 </form>

@@ -16,53 +16,17 @@
       </thead>
       <tbody>
 
-      <tr>
-        <td>1</td>
-        <td>Nguyễn Văn An</td>
-        <td>23/02/1999</td>
-        <td>Nam</td>
-        <td>0908767654</td>
-        <td>annguyen@gmail.com</td>
-        <td>25 Tố Hữu, Đà Nẵng</td>
+      <tr *ngFor="let customer of customerList,index as i">
+        <td>{{i + 1}}</td>
+        <td>{{customer.name}}</td>
+        <td>{{customer.dayOfBirth}}</td>
         <td>
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                  data-bs-target="#editModal">Edit
-          </button>
+          <span *ngIf="customer.gender === true">Nam</span>
+          <span *ngIf="!customer.gender === true">Nữ</span>
         </td>
-        <td>
-          <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                  data-bs-target="#deleteModal">Delete
-          </button>
-        </td>
-      </tr>
-
-      <tr>
-        <td>2</td>
-        <td>Nguyễn Thị Thành</td>
-        <td>23/02/1993</td>
-        <td>Nữ</td>
-        <td>0904555121</td>
-        <td>thanh93@gmail.com</td>
-        <td>172 Phan Thanh, Đà Nẵng</td>
-        <td>
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                  data-bs-target="#editModal">Edit
-          </button>
-        </td>
-        <td>
-          <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                  data-bs-target="#deleteModal">Delete
-          </button>
-        </td>
-      </tr>
-      <tr>
-        <td>3</td>
-        <td>Nguyễn Hữu</td>
-        <td>20/01/1991</td>
-        <td>Nam</td>
-        <td>0908767333</td>
-        <td>huunguyen91@gmail.com</td>
-        <td>133 Núi Thành, Đà Nẵng</td>
+        <td>{{customer.phoneNumber}}</td>
+        <td>{{customer.email}}</td>
+        <td>{{customer.address}}</td>
         <td>
           <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                   data-bs-target="#editModal">Edit
@@ -155,7 +119,7 @@
             <div class=" col-sm-4"><label class="control-label" for="newPhoneNumber">Phone
               number:</label></div>
             <div class="col-sm-8">
-              <input class="form-control"  id="newPhoneNumber"
+              <input class="form-control" id="newPhoneNumber"
                      placeholder="Enter phone number">
             </div>
           </div>
@@ -193,7 +157,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" >Edit Customer</h5>
+        <h5 class="modal-title">Edit Customer</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body m-0 p-0">
@@ -253,7 +217,7 @@
             <div class=" col-sm-4"><label class="control-label" for="editPhoneNumber">Phone
               number:</label></div>
             <div class="col-sm-8">
-              <input class="form-control"  id="editPhoneNumber"
+              <input class="form-control" id="editPhoneNumber"
                      placeholder="Enter phone number">
             </div>
           </div>
