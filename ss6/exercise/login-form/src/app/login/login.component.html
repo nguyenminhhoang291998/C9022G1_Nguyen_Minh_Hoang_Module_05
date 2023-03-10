@@ -1,0 +1,12 @@
+<h3>Login Form</h3>
+<form [formGroup]="loginForm" (ngSubmit)="submit()">
+  <p>Email</p>
+  <input formControlName="email">
+  <div *ngIf="loginForm.controls.email?.errors?.required && loginForm.controls.email?.touched">Không được để trống</div>
+  <div *ngIf="loginForm.controls.email?.errors?.email && loginForm.controls.email?.touched">Phải là email</div>
+  <p>Password</p>
+  <input type="password" formControlName="password">
+  <div *ngIf="loginForm.controls.password?.errors?.required && loginForm.controls.password?.touched">Không được để trống</div>
+  <div *ngIf="loginForm.controls.password?.errors?.minLength && loginForm.controls.password?.touched">Ít nhất 6 ký tự</div>
+  <br><button [disabled]="loginForm.invalid" type="submit">Login</button>
+</form>

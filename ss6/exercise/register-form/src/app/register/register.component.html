@@ -1,0 +1,63 @@
+<p>Login Form</p>
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()" novalidate>
+  <p>
+    <label for="email">Email </label>
+    <input type="text" id="email" name="email" formControlName="email">
+  </p>
+  <div *ngIf="!registerForm.controls.email?.valid && (registerForm.controls.email?.touched)">
+    Email không hợp lệ
+  </div>
+
+  <p>
+    <label for="password">Pass word</label>
+    <input type="password" id="password" name="password" formControlName="password" required>
+  </p>
+  <div *ngIf="!registerForm.controls.password?.valid && (registerForm.controls.password?.touched)">
+    Mật khẩu không hợp lệ
+  </div>
+  <p>
+    <label for="confirmPassword">Confirm password</label>
+    <input type="password" id="confirmPassword" name="confirmPassword" formControlName="confirmPassword" required>
+  </p>
+  <div *ngIf="(!registerForm.controls.confirmPassword?.valid || registerForm.hasError('mismatch')) && (registerForm.controls.confirmPassword?.touched)">
+    Mật khẩu nhập lại phải trùng với mật khẩu trên.
+  </div>
+  <p>
+    <label for="country">Country</label>
+    <select id="country" name="country" formControlName="country">
+      <option value="1">Việt Nam</option>
+      <option value="2">Mỹ</option>
+      <option value="3">TQ</option>
+    </select>
+  </p>
+  <div *ngIf="!registerForm.controls.country?.valid && (registerForm.controls.country?.touched)">
+    Không được để trống
+  </div>
+  <p>
+    <label for="age">Age</label>
+    <input type="text" id="age" name="age" formControlName="age">
+  </p>
+  <div *ngIf="(!registerForm.controls.age?.valid || registerForm.controls.age?.errors?.invalidAge) && (registerForm.controls.age?.touched)">
+    Tuổi không hợp lệ
+  </div>
+  <p>
+    <label>Gender</label>
+    <input type="radio" name="gender" value="male" formControlName="gender">Male
+    <input type="radio" name="gender" value="female" formControlName="gender">Female
+  </p>
+  <div *ngIf="!registerForm.controls.gender?.valid && (registerForm.controls.gender?.touched)">
+    Không được để trống
+  </div>
+
+  <p>
+    <label for="phone">Phone</label>
+    <input type="text" id="phone" name="phone" formControlName="phone">
+  </p>
+  <div *ngIf="!registerForm.controls.phone?.valid && (registerForm.controls.phone?.touched)">
+    Số điện thoại không hợp lệ
+  </div>
+
+  <p>
+    <button type="submit" [disabled]="registerForm.invalid">Submit</button>
+  </p>
+</form>
