@@ -1,0 +1,12 @@
+<table>
+  <tr>
+    <th>#</th>
+    <th>Word</th>
+    <th>Mean</th>
+  </tr>
+  <tr *ngFor="let word of wordList, index as i">
+    <th>{{i+1}}</th>
+    <th><a [routerLink]="['/detail',word.word]">{{word.word}}</a></th>
+    <th>{{word.mean}}</th>
+  </tr>
+</table>

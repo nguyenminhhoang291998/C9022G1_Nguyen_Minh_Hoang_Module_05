@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Customer} from '../model/customer';
+import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
+import {CustomerService} from '../service/customer.service';
 
 @Component({
   selector: 'app-customer',
@@ -7,41 +9,43 @@ import {Customer} from '../model/customer';
   styleUrls: ['./customer.component.css']
 })
 export class CustomerComponent implements OnInit {
-  customerList: Customer[];
 
-  constructor() {
+  constructor(private customerService: CustomerService) {
   }
+
+  customerList: Customer[] = [];
+
+  newCustomerForm: FormGroup;
 
   ngOnInit(): void {
-    this.customerList = [
-      {
-        name: 'Nguyễn Thị Hào',
-        dayOfBirth: '1970/11/07',
-        gender: false,
-        idCard: '643431213',
-        phoneNumber: '0945423362',
-        email: 'thihao07@gmail.com',
-        address: '23 Nguyễn Hoàng, Đà Nẵng'
-      },
-      {
-        name: 'Phạm Xuân Diệu',
-        dayOfBirth: '1992/08/08',
-        gender: true,
-        idCard: '865342123',
-        phoneNumber: '0954333333',
-        email: 'xuandieu92@gmail.com',
-        address: 'K77/22 Thái Phiên, Quảng Trị'
-      },
-      {
-        name: 'Trương Đình Nghệ',
-        dayOfBirth: '1960/11/07',
-        gender: true,
-        idCard: '488645199',
-        phoneNumber: '0373213122',
-        email: 'nghenhan2702@gmail.com',
-        address: 'K323/12 Ông Ích Khiêm, Vinh'
-      }
-    ];
+    this.getAll();
+    this.newCustomerForm = new FormGroup({
+      id: new FormControl('', [Validators.required, Validators.pattern(/^KH-\d{4}$/)]),
+      name: new FormControl('', [Validators.required]),
+      dayOfBirth: new FormControl('', [Validators.required, this.checkAge]),
+      gender: new FormControl('', [Validators.required]),
+      idCard: new FormControl('', [Validators.pattern(/\d{9}(\d{3})?/)]),
+      phoneNumber: new FormControl('', [Validators.pattern(/^([(]84[)][+]|0)9[0-1]\d{7}$/)]),
+      email: new FormControl('', [Validators.email]),
+      address: new FormControl('', [Validators.required]),
+      customerType: new FormControl('', [Validators.required])
+    });
   }
+
+  getAll() {
+    this.customerList = this.customerService.getAll();
+  }
+
+
+  checkAge(control: AbstractControl) {
+    return (new Date().getFullYear()) - new Date(control.value).getFullYear() >= 18 ? null : {ageError: true};
+  }
+
+  onSubmit() {
+    const customer = this.newCustomerForm.value;
+    this.customerService.saveCustomer(customer);
+    this.newCustomerForm.reset();
+  }
+
 
 }

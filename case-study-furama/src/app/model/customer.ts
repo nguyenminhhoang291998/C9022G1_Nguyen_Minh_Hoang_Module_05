@@ -1,4 +1,5 @@
 export interface Customer {
+  id?: string;
   name?: string;
   dayOfBirth?: string;
   gender?: boolean;
@@ -6,4 +7,5 @@ export interface Customer {
   phoneNumber?: string;
   email?: string;
   address?: string;
+  customerType?: number;
 }

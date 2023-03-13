@@ -1,3 +1,4 @@
+<app-navbar></app-navbar>
 <h2 style="margin-left: 45%;margin-top: 1%">Contract</h2>
 
 <div class="table-list">
@@ -11,19 +12,17 @@
         <th scope="col">Start day</th>
         <th scope="col">End day</th>
         <th scope="col">Deposit</th>
-        <th scope="col">Total cost</th>
         <th scope="col">Attach facility</th>
       </tr>
       </thead>
       <tbody>
-      <tr>
-        <td>1</td>
-        <td>Room 3</td>
-        <td>Nguyễn Văn An</td>
-        <td>09/02/2022</td>
-        <td>19/02/2022</td>
-        <td>400000</td>
-        <td>2000000</td>
+      <tr *ngFor="let contract of contractList, index as i">
+        <td>{{i+1}}</td>
+        <td>{{contract.facility.name}}</td>
+        <td>{{contract.customer.name}}</td>
+        <td>{{contract.startDate}}</td>
+        <td>{{contract.endDate}}</td>
+        <td>{{contract.deposit}}</td>
         <td>
           <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                   data-bs-target="#newAttachFacilityModal">+
@@ -34,43 +33,6 @@
           </button>
         </td>
       </tr>
-      <tr>
-        <td>2</td>
-        <td>Villa 3</td>
-        <td>Nguyễn Thành</td>
-        <td>09/02/2022</td>
-        <td>19/02/2022</td>
-        <td>300000</td>
-        <td>4000000</td>
-        <td>
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                  data-bs-target="#newAttachFacilityModal">+
-          </button>
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                  data-bs-target="#attachFacilityList">
-            Attach facility list
-          </button>
-        </td>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>Villa 1</td>
-        <td>Nguyễn Thuận</td>
-        <td>09/02/2022</td>
-        <td>19/02/2022</td>
-        <td>0</td>
-        <td>2000000</td>
-        <td>
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                  data-bs-target="#newAttachFacilityModal">+
-          </button>
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                  data-bs-target="#attachFacilityList">
-            Attach facility list
-          </button>
-        </td>
-      </tr>
-
       </tbody>
     </table>
   </div>

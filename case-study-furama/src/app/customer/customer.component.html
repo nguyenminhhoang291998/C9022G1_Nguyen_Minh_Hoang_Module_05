@@ -1,9 +1,10 @@
+<app-navbar></app-navbar>
 <div class="table-list">
   <div class="table-responsive">
     <table class="table table-striped w-100" id="tableCustomer">
       <thead style="vertical-align: top; text-align: center">
       <tr>
-        <th scope="col">#</th>
+        <th scope="col">Id</th>
         <th scope="col">Name</th>
         <th scope="col">Day Of Birth</th>
         <th scope="col">Gender</th>
@@ -16,8 +17,8 @@
       </thead>
       <tbody>
 
-      <tr *ngFor="let customer of customerList,index as i">
-        <td>{{i + 1}}</td>
+      <tr *ngFor="let customer of customerList">
+        <td>{{customer.id}}</td>
         <td>{{customer.name}}</td>
         <td>{{customer.dayOfBirth}}</td>
         <td>
@@ -59,33 +60,43 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="">Add Customer</h5>
+        <h5 class="modal-title" >Add Customer</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body m-0 p-0">
 
-        <form class="form-horizontal" action="/customer/save" method="post">
+        <form class="form-horizontal" [formGroup]="newCustomerForm" (ngSubmit)="onSubmit()" novalidate>
 
           <div class="row form-group align-items-center m-2">
             <div class=" col-sm-4"><label class="control-label" for="newCustomerTypeId">Customer
               Type:</label></div>
             <div class="col-sm-8">
-              <select type="number" class="form-control" id="newCustomerTypeId">
+              <select class="form-control" id="newCustomerTypeId" formControlName="customerType">
                 <option value="0" disabled>Chọn loại khách hàng</option>
-                <option>Diamond</option>
-                <option>Platinum</option>
-                <option>Gold</option>
-                <option>Silver</option>
-                <option>Member</option>
+                <option value="1">Diamond</option>
+                <option value="2">Platinum</option>
+                <option value="3">Gold</option>
+                <option value="4">Silver</option>
+                <option value="5">Member</option>
               </select>
             </div>
           </div>
 
           <div class="row form-group align-items-center m-2">
+            <div class=" col-sm-4"><label class="control-label">Id:</label></div>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" formControlName="id"
+                     placeholder="Enter Id">
+              <div class="error" *ngIf="newCustomerForm.controls.id?.errors?.required && newCustomerForm.controls.id?.touched">Mã Khách hàng không được để trống</div>
+              <div class="error" *ngIf="newCustomerForm.controls.id?.errors?.pattern && newCustomerForm.controls.id?.touched">Mã Khách hàng không đúng định dạng</div>
+            </div>
+          </div>
+          <div class="row form-group align-items-center m-2">
             <div class=" col-sm-4"><label class="control-label" for="newName">Name:</label></div>
             <div class="col-sm-8">
-              <input type="text" class="form-control" id="newName"
+              <input type="text" class="form-control" id="newName" formControlName="name"
                      placeholder="Enter name">
+              <div class="error" *ngIf="newCustomerForm.controls.name?.errors?.required && newCustomerForm.controls.name?.touched">
             </div>
           </div>
 
@@ -93,24 +104,26 @@
             <div class=" col-sm-4"><label class="control-label" for="newDayOfBirth">Day Of
               Birth:</label></div>
             <div class="col-sm-8">
-              <input type="date" class="form-control" id="newDayOfBirth"
+              <input type="date" class="form-control" id="newDayOfBirth"  formControlName="dayOfBirth"
                      placeholder="Enter day of birth">
+              <div class="error" *ngIf="newCustomerForm.controls.dayOfBirth?.errors?.ageError && newCustomerForm.controls.dayOfBirth?.touched">Khách hàng phải lớn hơn 18 tuổi.</div>
+              <div class="error" *ngIf="newCustomerForm.controls.dayOfBirth?.errors?.required && newCustomerForm.controls.dayOfBirth?.touched">Không được để trống.</div>
             </div>
           </div>
 
           <div class="row form-group align-items-center m-2">
             <div class=" col-sm-4"><label class="control-label">Gender:</label></div>
             <div class="col-sm-8">
-              <label for="gender1"><input class="ms-3 me-1" checked type="radio"
+              <label for="gender1"><input class="ms-3 me-1" checked type="radio" value="true" formControlName="gender"
                                           id="gender1">Nam</label>
-              <label for="gender2"><input class="ms-3 me-1" type="radio" id="gender2">Nữ</label>
+              <label for="gender2"><input class="ms-3 me-1" type="radio" id="gender2" value="false" formControlName="gender">Nữ</label>
             </div>
           </div>
 
           <div class="row form-group align-items-center m-2">
             <div class=" col-sm-4"><label class="control-label" for="newIdCard">ID card:</label></div>
             <div class="col-sm-8">
-              <input type="number" class="form-control"
+              <input type="number" class="form-control"  formControlName="idCard"
                      id="newIdCard" placeholder="Enter ID card">
             </div>
           </div>
@@ -119,7 +132,7 @@
             <div class=" col-sm-4"><label class="control-label" for="newPhoneNumber">Phone
               number:</label></div>
             <div class="col-sm-8">
-              <input class="form-control" id="newPhoneNumber"
+              <input class="form-control" id="newPhoneNumber"  formControlName="phoneNumber"
                      placeholder="Enter phone number">
             </div>
           </div>
@@ -127,7 +140,7 @@
           <div class="row form-group align-items-center m-2">
             <div class=" col-sm-4"><label class="control-label" for="newEmail">Email:</label></div>
             <div class="col-sm-8">
-              <input type="email" class="form-control" id="newEmail"
+              <input type="email" class="form-control" id="newEmail"  formControlName="email"
                      placeholder="Enter email">
 
             </div>
@@ -136,13 +149,13 @@
           <div class="row form-group align-items-center m-2">
             <div class=" col-sm-4"><label class="control-label" for="newAddress">Address:</label></div>
             <div class="col-sm-8">
-              <input type="text" class="form-control" id="newAddress"
+              <input type="text" class="form-control" id="newAddress"  formControlName="address"
                      placeholder="Enter address">
             </div>
           </div>
           <div class="form-group m-2">
             <div class="d-flex justify-content-center">
-              <button type="submit" class="btn btn-success">Save</button>
+              <button [disabled]="newCustomerForm.invalid" data-bs-dismiss="modal" class="btn btn-success">Save</button>
             </div>
           </div>
         </form>
@@ -153,122 +166,122 @@
 
 
 <!--Modal edit-->
-<div class='modal fade' id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Edit Customer</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body m-0 p-0">
+<!--<div class='modal fade' id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
+<!--  <div class="modal-dialog">-->
+<!--    <div class="modal-content">-->
+<!--      <div class="modal-header">-->
+<!--        <h5 class="modal-title">Edit Customer</h5>-->
+<!--        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+<!--      </div>-->
+<!--      <div class="modal-body m-0 p-0">-->
 
-        <form class="form-horizontal" action="/customer/save" method="post">
+<!--&lt;!&ndash;        <form class="form-horizontal" action="/customer/save" method="post">&ndash;&gt;-->
 
-          <div class="row form-group align-items-center m-2">
-            <div class=" col-sm-4"><label class="control-label" for="editCustomerTypeId">Customer
-              Type:</label></div>
-            <div class="col-sm-8">
-              <select type="number" class="form-control" id="editCustomerTypeId">
-                <option value="0" disabled>Chọn loại khách hàng</option>
-                <option>Diamond</option>
-                <option>Platinum</option>
-                <option>Gold</option>
-                <option>Silver</option>
-                <option>Member</option>
-              </select>
-            </div>
-          </div>
+<!--          <div class="row form-group align-items-center m-2">-->
+<!--            <div class=" col-sm-4"><label class="control-label" for="editCustomerTypeId">Customer-->
+<!--              Type:</label></div>-->
+<!--            <div class="col-sm-8">-->
+<!--              <select type="number" class="form-control" id="editCustomerTypeId">-->
+<!--                <option value="0" disabled>Chọn loại khách hàng</option>-->
+<!--                <option>Diamond</option>-->
+<!--                <option>Platinum</option>-->
+<!--                <option>Gold</option>-->
+<!--                <option>Silver</option>-->
+<!--                <option>Member</option>-->
+<!--              </select>-->
+<!--            </div>-->
+<!--          </div>-->
 
-          <div class="row form-group align-items-center m-2">
-            <div class=" col-sm-4"><label class="control-label" for="editName">Name:</label></div>
-            <div class="col-sm-8">
-              <input type="text" class="form-control" id="editName"
-                     placeholder="Enter name">
-            </div>
-          </div>
+<!--          <div class="row form-group align-items-center m-2">-->
+<!--            <div class=" col-sm-4"><label class="control-label" for="editName">Name:</label></div>-->
+<!--            <div class="col-sm-8">-->
+<!--              <input type="text" class="form-control" id="editName"-->
+<!--                     placeholder="Enter name">-->
+<!--            </div>-->
+<!--          </div>-->
 
-          <div class="row form-group align-items-center m-2">
-            <div class=" col-sm-4"><label class="control-label" for="editDayOfBirth">Day Of
-              Birth:</label></div>
-            <div class="col-sm-8">
-              <input type="date" class="form-control" id="editDayOfBirth"
-                     placeholder="Enter day of birth">
-            </div>
-          </div>
+<!--          <div class="row form-group align-items-center m-2">-->
+<!--            <div class=" col-sm-4"><label class="control-label" for="editDayOfBirth">Day Of-->
+<!--              Birth:</label></div>-->
+<!--            <div class="col-sm-8">-->
+<!--              <input type="date" class="form-control" id="editDayOfBirth"-->
+<!--                     placeholder="Enter day of birth">-->
+<!--            </div>-->
+<!--          </div>-->
 
-          <div class="row form-group align-items-center m-2">
-            <div class=" col-sm-4"><label class="control-label">Gender:</label></div>
-            <div class="col-sm-8">
-              <label for="gender1"><input class="ms-3 me-1" checked type="radio"
-              >Nam</label>
-              <label for="gender2"><input class="ms-3 me-1" type="radio">Nữ</label>
-            </div>
-          </div>
+<!--          <div class="row form-group align-items-center m-2">-->
+<!--            <div class=" col-sm-4"><label class="control-label">Gender:</label></div>-->
+<!--            <div class="col-sm-8">-->
+<!--              <label ><input class="ms-3 me-1" checked type="radio"-->
+<!--              >Nam</label>-->
+<!--              <label ><input class="ms-3 me-1" type="radio">Nữ</label>-->
+<!--            </div>-->
+<!--          </div>-->
 
-          <div class="row form-group align-items-center m-2">
-            <div class=" col-sm-4"><label class="control-label" for="editIdCard">ID card:</label></div>
-            <div class="col-sm-8">
-              <input type="number" class="form-control"
-                     id="editIdCard" placeholder="Enter ID card">
-            </div>
-          </div>
+<!--          <div class="row form-group align-items-center m-2">-->
+<!--            <div class=" col-sm-4"><label class="control-label" for="editIdCard">ID card:</label></div>-->
+<!--            <div class="col-sm-8">-->
+<!--              <input type="number" class="form-control"-->
+<!--                     id="editIdCard" placeholder="Enter ID card">-->
+<!--            </div>-->
+<!--          </div>-->
 
-          <div class="row form-group align-items-center m-2">
-            <div class=" col-sm-4"><label class="control-label" for="editPhoneNumber">Phone
-              number:</label></div>
-            <div class="col-sm-8">
-              <input class="form-control" id="editPhoneNumber"
-                     placeholder="Enter phone number">
-            </div>
-          </div>
+<!--          <div class="row form-group align-items-center m-2">-->
+<!--            <div class=" col-sm-4"><label class="control-label" for="editPhoneNumber">Phone-->
+<!--              number:</label></div>-->
+<!--            <div class="col-sm-8">-->
+<!--              <input class="form-control" id="editPhoneNumber"-->
+<!--                     placeholder="Enter phone number">-->
+<!--            </div>-->
+<!--          </div>-->
 
-          <div class="row form-group align-items-center m-2">
-            <div class=" col-sm-4"><label class="control-label" for="editEmail">Email:</label></div>
-            <div class="col-sm-8">
-              <input type="email" class="form-control" id="editEmail"
-                     placeholder="Enter email">
+<!--          <div class="row form-group align-items-center m-2">-->
+<!--            <div class=" col-sm-4"><label class="control-label" for="editEmail">Email:</label></div>-->
+<!--            <div class="col-sm-8">-->
+<!--              <input type="email" class="form-control" id="editEmail"-->
+<!--                     placeholder="Enter email">-->
 
-            </div>
-          </div>
+<!--            </div>-->
+<!--          </div>-->
 
-          <div class="row form-group align-items-center m-2">
-            <div class=" col-sm-4"><label class="control-label" for="editAddress">Address:</label></div>
-            <div class="col-sm-8">
-              <input type="text" class="form-control" id="editAddress"
-                     placeholder="Enter address">
-            </div>
-          </div>
-          <div class="form-group m-2">
-            <div class="d-flex justify-content-center">
-              <button type="submit" class="btn btn-success">Save</button>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
+<!--          <div class="row form-group align-items-center m-2">-->
+<!--            <div class=" col-sm-4"><label class="control-label" for="editAddress">Address:</label></div>-->
+<!--            <div class="col-sm-8">-->
+<!--              <input type="text" class="form-control" id="editAddress"-->
+<!--                     placeholder="Enter address">-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="form-group m-2">-->
+<!--            <div class="d-flex justify-content-center">-->
+<!--              <button type="submit" class="btn btn-success">Save</button>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--&lt;!&ndash;        </form>&ndash;&gt;-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
 
 
 <!--Modal delete-->
-<div class="modal fade" id="deleteModal" tabindex="-1"
-     aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Delete customer</h5>
-      </div>
-      <form action="/customer/delete" method="post">
-        <div class="modal-body">
-          <input id="deleteId" name="deleteId" hidden>
-          <span>Are you sure you want to delete customer </span>
-          <span id="deleteName"></span>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-          <button type="submit" class="btn btn-primary">Delete</button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
+<!--<div class="modal fade" id="deleteModal" tabindex="-1"-->
+<!--     aria-labelledby="exampleModalLabel" aria-hidden="true">-->
+<!--  <div class="modal-dialog">-->
+<!--    <div class="modal-content">-->
+<!--      <div class="modal-header">-->
+<!--        <h5 class="modal-title" id="exampleModalLabel">Delete customer</h5>-->
+<!--      </div>-->
+<!--&lt;!&ndash;      <form action="/customer/delete" method="post">&ndash;&gt;-->
+<!--        <div class="modal-body">-->
+<!--          <input id="deleteId" name="deleteId" hidden>-->
+<!--          <span>Are you sure you want to delete customer </span>-->
+<!--          <span id="deleteName"></span>-->
+<!--        </div>-->
+<!--        <div class="modal-footer">-->
+<!--          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>-->
+<!--          <button type="submit" class="btn btn-primary">Delete</button>-->
+<!--        </div>-->
+<!--&lt;!&ndash;      </form>&ndash;&gt;-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
