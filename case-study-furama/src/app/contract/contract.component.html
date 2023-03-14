@@ -60,38 +60,38 @@
       </div>
       <div class="modal-body m-0 p-0">
 
-        <form class="form-horizontal" >
+        <form class="form-horizontal" [formGroup]="newContractForm" (ngSubmit)="onSubmit()" >
 
           <div class="row form-group align-items-center m-2">
             <div class=" col-sm-4">
-              <label class="control-label" for="startDate">Start date:</label></div>
+              <label class="control-label">Start date:</label></div>
             <div class="col-sm-8">
-              <input type="date" class="form-control" id="startDate">
+              <input type="date" class="form-control" formControlName="startDate">
             </div>
           </div>
 
           <div class="row form-group align-items-center m-2">
             <div class=" col-sm-4">
-              <label class="control-label" for="endDate">End date:</label></div>
+              <label class="control-label" >End date:</label></div>
             <div class="col-sm-8">
-              <input type="date" class="form-control" id="endDate">
-              <p class="form-control border-0 text-danger" style="display: none;" id="endDateError">Ngày
-                kết thúc phải lớn hơn ngày bắt đầu!</p>
+              <input type="date" class="form-control" formControlName="endDate">
+
             </div>
           </div>
 
           <div class="row form-group align-items-center m-2">
             <div class=" col-sm-4">
-              <label class="control-label" for="deposit">Deposit:</label></div>
+              <label class="control-label" >Deposit:</label></div>
             <div class="col-sm-8">
               <input required type="number" class="form-control"
-                     id="deposit">
+                     formControlName="deposit">
+              <div class="error" *ngIf="newContractForm.controls.deposit?.errors?.pattern && newContractForm.controls.deposit?.touched">Tiền phải là số nguyên dương</div>
             </div>
           </div>
 
           <div class="row form-group align-items-center m-2">
             <div class=" col-sm-4">
-              <label class="control-label" for="totalCost">Total cost:</label></div>
+              <label class="control-label">Total cost:</label></div>
             <div class="col-sm-8">
               <input class="form-control bg-light" id="totalCost" readonly>
             </div>
@@ -109,8 +109,9 @@
             <div class=" col-sm-4">
               <label class="control-label">Customers:</label></div>
             <div class="col-sm-8">
-              <select class="form-control" id="customerId">
+              <select class="form-control" formControlName="customer">
                 <option value="0" disabled selected>Chọn khách hàng</option>
+                <option value="1">Nguyễn Văn An</option>
               </select>
             </div>
           </div>
@@ -119,8 +120,9 @@
             <div class=" col-sm-4">
               <label class="control-label">Service:</label></div>
             <div class="col-sm-8">
-              <select class="form-control" id="facilityId">
+              <select class="form-control" formControlName="facility">
                 <option value="0" disabled selected>Chọn dịch vụ</option>
+                <option value="1" >Room 3</option>
               </select>
             </div>
           </div>
@@ -142,8 +144,8 @@
             <div class="d-flex justify-content-center">
               <button type="button" class="btn btn-secondary m-1" data-bs-dismiss="modal">Cancel
               </button>
-              <button type="button" data-bs-dismiss="modal"
-                      id="buttonCreate" class="btn btn-primary m-1">Create contract
+              <button type="submit" data-bs-dismiss="modal"
+                      id="buttonCreate" [disabled]="newContractForm.invalid" class="btn btn-primary m-1" data-bs-dismiss="modal">Create contract
               </button>
             </div>
           </div>

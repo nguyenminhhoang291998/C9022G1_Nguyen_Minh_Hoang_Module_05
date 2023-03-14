@@ -54,7 +54,6 @@ export class CustomerService {
 
   saveCustomer(customer: Customer) {
     this.customerList.push(customer);
-    debugger
   }
 
   updateCustomer(customer: Customer) {

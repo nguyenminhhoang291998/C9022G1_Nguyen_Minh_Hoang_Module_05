@@ -47,7 +47,6 @@ export class CustomerComponent implements OnInit {
   onSubmitAdd() {
     const customer = this.newCustomerForm.value;
     this.customerService.saveCustomer(customer);
-    debugger
     this.newCustomerForm.reset();
   }
 

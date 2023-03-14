@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {Contract} from '../model/contract';
 import {Customer} from '../model/customer';
 import {Facility} from '../model/facility';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {ContractService} from '../service/contract.service';
 
 @Component({
   selector: 'app-contract',
@@ -9,50 +11,26 @@ import {Facility} from '../model/facility';
   styleUrls: ['./contract.component.css']
 })
 export class ContractComponent implements OnInit {
-  contractList: Contract[] = [
-    {
-      id: 1,
-      customer: {
-        name: 'Nguyễn Thị Hào '
-      },
-      facility: {
-        name: 'Villa beach front'
-      },
-      startDate: '2023/09/08',
-      endDate: '2023/09/12',
-      deposit: 200000
-    },
-    {
-      id: 1,
-      customer: {
-        name: 'Phạm Xuân Diệu'
-      },
-      facility: {
-        name: 'House princess 02'
-      },
-      startDate: '2023/09/08',
-      endDate: '2023/09/12',
-      deposit: 300000
-    },
-    {
-      id: 1,
-      customer: {
-        name: 'Trương Đình Nghệ'
-      },
-      facility: {
-        name: 'Room twin 02'
-      },
-      startDate: '2023/09/08',
-      endDate: '2023/09/12',
-      deposit: 100000
-    }
-  ];
+  contractList: Contract[] = [];
 
-  constructor() {
+  newContractForm: FormGroup;
+
+  constructor(private contractService: ContractService) {
   }
 
   ngOnInit(): void {
-
+    this.contractList = this.contractService.getAll();
+    this.newContractForm = new FormGroup({
+      customer: new FormControl(),
+      facility: new FormControl(),
+      startDate: new FormControl(),
+      endDate: new FormControl(),
+      deposit: new FormControl('', [Validators.pattern(/^[1-9]\d*$/)])
+    });
   }
 
+  onSubmit() {
+    this.contractService.saveContract(this.newContractForm.value);
+    this.contractList = this.contractService.getAll();
+  }
 }
