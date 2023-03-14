@@ -2,13 +2,17 @@ import {Component, OnInit} from '@angular/core';
 import {ProductService} from "../../service/product.service";
 import {Product} from "../../model/product";
 import {Router} from "@angular/router";
+import {CategoryService} from "../../service/category.service";
+import {Category} from "../../model/category";
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
-  constructor(private productService: ProductService) {
+  constructor(private productService: ProductService,
+              private router: Router,
+              private categoryService: CategoryService){
   }
 
   products: Product[] = [];
@@ -20,15 +24,24 @@ export class ProductListComponent implements OnInit {
   }
 
   getAll() {
-    this.products = this.productService.getAll();
+    this.productService.getAll().subscribe(products => {
+      this.products = products;
+    });
   }
 
   openDeleteModal(id: number) {
     this.idDelete = id;
-    this.productDelete = this.productService.findProductById(id);
+    this.productService.findProductById(id).subscribe(product => {
+      this.productDelete = product;
+    })
   }
 
   onDelete() {
-    this.productService.deleteProductById(this.idDelete)
+    this.productService.deleteProductById(this.idDelete).subscribe(() => {
+      alert('Xóa thành công')
+      this.getAll();
+    }, e => {
+      console.log(e);
+      });
   }
 }

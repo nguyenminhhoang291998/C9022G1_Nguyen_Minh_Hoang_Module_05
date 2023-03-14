@@ -3,11 +3,13 @@
 </h2>
 <div class="col-md-8 offset-md-2">
   <input type="text" class="form-control" [formControl]="content" (change)="change()">
-  <ul>
+  <ul *ngFor="let todo of todos; index as i">
     <li (click)="toggleTodo(i)"
-        [class.complete]="todo.complete"
-        *ngFor="let todo of todos; index as i">
+        [class.complete]="todo.complete">
       {{todo.content}}
+      <br>
     </li>
+    <a class="btn btn-primary" routerLink="/todos/edit/{{todo.id}}" role="button">Sửa</a>
+    <a class="btn btn-danger" role="button" (click)="delete(todo.id)">Xóa</a>
   </ul>
 </div>

@@ -1,65 +1,40 @@
 import {Injectable} from '@angular/core';
 import {Product} from "../model/product";
+import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
+import {environment} from "../../environments/environment";
+
+// const API_URL = `${environment.apiUrl}`;
+const API_URL = `http://localhost:3000`;
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class ProductService {
 
-  products: Product[] = [{
-    id: 1,
-    name: 'IPhone 12',
-    price: 2400000,
-    description: 'New'
-  }, {
-    id: 2,
-    name: 'IPhone 11',
-    price: 1560000,
-    description: 'Like new'
-  }, {
-    id: 3,
-    name: 'IPhone X',
-    price: 968000,
-    description: '97%'
-  }, {
-    id: 4,
-    name: 'IPhone 8',
-    price: 7540000,
-    description: '98%'
-  }, {
-    id: 5,
-    name: 'IPhone 11 Pro',
-    price: 1895000,
-    description: 'Like new'
-  }];
 
-  constructor() {
+  constructor(private http: HttpClient) {
   }
 
-  getAll() {
-    return this.products;
+  getAll(): Observable<Product[]> {
+    return this.http.get<Product[]>(API_URL + '/products');
   }
 
-  saveProduct(product) {
-    debugger
-    this.products.push({...product,id: this.products.length + 1});
+  saveProduct(product): Observable<Product> {
+    return this.http.post<Product>(API_URL + '/products', product);
   }
 
-  updateProduct(product: Product) {
-    const index = this.getAll().findIndex(p => p.id === product.id);
-    if (index !== -1) {
-      this.getAll().splice(index, 1, product)
-    }
+  updateProduct(id: number, product: Product): Observable<Product> {
+    return this.http.put<Product>(`${API_URL}/products/${id}`, product)
   }
 
-  deleteProductById(id: number){
-    const index = this.getAll().findIndex(p => p.id === id);
-    if (index !== -1) {
-      this.products.splice(index, 1);
-    }
+  deleteProductById(id: number): Observable<Product> {
+   return this.http.delete<Product>(`${API_URL}/products/${id}`)
   }
 
-  findProductById(id) {
-    return this.getAll().find(item => item.id === id);
+  findProductById(id: number): Observable<Product> {
+    return this.http.get<Product>(`${API_URL}/products/${id}`)
   }
+
 }

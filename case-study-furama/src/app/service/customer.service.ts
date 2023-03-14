@@ -9,7 +9,7 @@ export class CustomerService {
     {
       id: 'KH-0001',
       name: 'Nguyễn Thị Hào',
-      dayOfBirth: '1970/11/07',
+      dayOfBirth: '1970-11-07',
       gender: false,
       idCard: '643431213',
       phoneNumber: '0945423362',
@@ -20,7 +20,7 @@ export class CustomerService {
     {
       id: 'KH-0002',
       name: 'Phạm Xuân Diệu',
-      dayOfBirth: '1992/08/08',
+      dayOfBirth: '1970-11-07',
       gender: true,
       idCard: '865342123',
       phoneNumber: '0954333333',
@@ -31,7 +31,7 @@ export class CustomerService {
     {
       id: 'KH-0003',
       name: 'Trương Đình Nghệ',
-      dayOfBirth: '1960/11/07',
+      dayOfBirth: '1970-11-07',
       gender: true,
       idCard: '488645199',
       phoneNumber: '0373213122',
@@ -54,6 +54,7 @@ export class CustomerService {
 
   saveCustomer(customer: Customer) {
     this.customerList.push(customer);
+    debugger
   }
 
   updateCustomer(customer: Customer) {

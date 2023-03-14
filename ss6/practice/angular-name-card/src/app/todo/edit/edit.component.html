@@ -1,0 +1,6 @@
+<form [formGroup]="formEdit" (ngSubmit)="update(id)">
+  <input type="text" class="form-control" formControlName="content">
+  <input type="text" class="form-control" formControlName="complete" hidden>
+  <button type="submit">Lưu</button>
+</form>
+

@@ -13,7 +13,7 @@ export class ContractComponent implements OnInit {
     {
       id: 1,
       customer: {
-        customerName: 'Nguyễn Thị Hào '
+        name: 'Nguyễn Thị Hào '
       },
       facility: {
         name: 'Villa beach front'
@@ -25,7 +25,7 @@ export class ContractComponent implements OnInit {
     {
       id: 1,
       customer: {
-        customerName: 'Phạm Xuân Diệu'
+        name: 'Phạm Xuân Diệu'
       },
       facility: {
         name: 'House princess 02'
@@ -37,7 +37,7 @@ export class ContractComponent implements OnInit {
     {
       id: 1,
       customer: {
-        customerName: 'Trương Đình Nghệ'
+        name: 'Trương Đình Nghệ'
       },
       facility: {
         name: 'Room twin 02'
