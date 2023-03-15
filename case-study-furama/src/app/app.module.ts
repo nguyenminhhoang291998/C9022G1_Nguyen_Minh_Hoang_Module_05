@@ -6,12 +6,12 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { FacilityComponent } from './facility/facility.component';
-import { CustomerComponent } from './customer/customer.component';
-import { ContractComponent } from './contract/contract.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { HomeComponent } from './home/home.component';
 import {HttpClientModule} from '@angular/common/http';
+import {FacilityComponent} from './component/facility/facility.component';
+import {CustomerComponent} from './component/customer/customer.component';
+import {ContractComponent} from './component/contract/contract.component';
+import {HomeComponent} from './component/home/home.component';
 
 @NgModule({
   declarations: [

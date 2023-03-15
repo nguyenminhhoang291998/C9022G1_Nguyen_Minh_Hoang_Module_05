@@ -19,7 +19,7 @@ export class ContractComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.contractList = this.contractService.getAll();
+    this.getAll();
     this.newContractForm = new FormGroup({
       customer: new FormControl(),
       facility: new FormControl(),
@@ -29,8 +29,16 @@ export class ContractComponent implements OnInit {
     });
   }
 
+  getAll() {
+    this.contractService.getAll().subscribe(contracts => {
+      this.contractList = contracts;
+    });
+  }
+
   onSubmit() {
-    this.contractService.saveContract(this.newContractForm.value);
-    this.contractList = this.contractService.getAll();
+    this.contractService.saveContract(this.newContractForm.value).subscribe(() => {
+      alert('Thêm thành công');
+      this.getAll();
+    });
   }
 }

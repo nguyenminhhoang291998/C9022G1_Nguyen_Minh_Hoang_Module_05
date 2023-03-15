@@ -2,31 +2,31 @@
   "customers": [
     {
       "id": "KH-0001",
-      "customerType": 1,
       "name": "Dương Văn Hào",
-      "dateOfBirth": "2000-09-28",
+      "dayOfBirth": "1998-12-12",
       "gender": true,
       "idCard": "201943464",
       "phoneNumber": "0905703782",
       "email": "lexuanvu289@gmail.com",
-      "address": "K02/12 Đinh Tiên Hoàng, Thanh Khê, Đà Nẵng"
+      "address": "K02/12 Đinh Tiên Hoàng, Thanh Khê, Đà Nẵng",
+      "customerType": 1
     },
     {
       "id": "KH-0003",
-      "customerType": 2,
       "name": "Nguyễn Văn Dương",
-      "dateOfBirth": "1994-09-19",
+      "dayOfBirth": "1988-09-08",
       "gender": true,
       "idCard": "201286494",
-      "phoneNumber": "0789123456",
+      "phoneNumber": "0901234561",
       "email": "nguyent289@gmail.com",
-      "address": "K14/15 Nguyễn Thị Thập, Thanh Khê, Đà Nẵng"
+      "address": "K14/15 Nguyễn Thị Thập, Thanh Khê, Đà Nẵng",
+      "customerType": 2
     },
     {
       "id": "KH-0003",
       "customerType": 3,
       "name": "Nguyễn Thị Hà",
-      "dateOfBirth": "1998-12-02",
+      "dateOfBirth": "1998-12-2",
       "gender": false,
       "idCard": "2017564293",
       "phoneNumber": "0789555872",
