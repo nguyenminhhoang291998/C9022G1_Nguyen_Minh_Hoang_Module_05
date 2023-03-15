@@ -22,7 +22,7 @@
     },
     {
       "id": 3,
-      "name": "Xiaomi 8",
+      "name": "Xiaomi 81",
       "price": 968000,
       "description": "97%",
       "category": {
@@ -38,6 +38,16 @@
       "category": {
         "id": 1,
         "name": "Apple"
+      }
+    },
+    {
+      "id": 5,
+      "name": "1231111",
+      "price": 123,
+      "description": "123222",
+      "category": {
+        "id": 2,
+        "name": "Xiaomi"
       }
     }
   ],

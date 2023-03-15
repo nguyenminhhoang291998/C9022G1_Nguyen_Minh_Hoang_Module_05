@@ -14,7 +14,7 @@
     <td>{{product.name}}</td>
     <td>{{product.price}}</td>
     <td>{{product.description}}</td>
-    <td>{{product.category.name}}</td>
+    <td>{{product.category?.name}}</td>
     <td><a [routerLink]="['/product/edit',product.id]"><button class="btn btn-success">Sửa</button></a></td>
     <td>
       <button class="btn btn-primary bg-danger" (click)="openDeleteModal(product.id)" data-bs-toggle="modal"
