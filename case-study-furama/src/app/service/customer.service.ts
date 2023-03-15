@@ -1,73 +1,36 @@
 import {Injectable} from '@angular/core';
 import {Customer} from '../model/customer';
+import {Observable} from 'rxjs';
+import {HttpClient} from '@angular/common/http';
+
+const API_URL = 'http://localhost:3000/customers';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CustomerService {
-  customerList: Customer[] = [
-    {
-      id: 'KH-0001',
-      name: 'Nguyễn Thị Hào',
-      dayOfBirth: '1970-11-07',
-      gender: false,
-      idCard: '643431213',
-      phoneNumber: '0945423362',
-      email: 'thihao07@gmail.com',
-      address: '23 Nguyễn Hoàng, Đà Nẵng',
-      customerType: 1
-    },
-    {
-      id: 'KH-0002',
-      name: 'Phạm Xuân Diệu',
-      dayOfBirth: '1970-11-07',
-      gender: true,
-      idCard: '865342123',
-      phoneNumber: '0954333333',
-      email: 'xuandieu92@gmail.com',
-      address: 'K77/22 Thái Phiên, Quảng Trị',
-      customerType: 2
-    },
-    {
-      id: 'KH-0003',
-      name: 'Trương Đình Nghệ',
-      dayOfBirth: '1970-11-07',
-      gender: true,
-      idCard: '488645199',
-      phoneNumber: '0373213122',
-      email: 'nghenhan2702@gmail.com',
-      address: 'K323/12 Ông Ích Khiêm, Vinh',
-      customerType: 3
-    }
-  ];
 
-  constructor() {
+  constructor(private http: HttpClient) {
   }
 
-  getAll() {
-    return this.customerList;
+  getAll(): Observable<Customer[]> {
+    return this.http.get<Customer[]>(API_URL);
   }
 
-  findCustomerById(id: string) {
-    return this.customerList.find(item => item.id === id);
+  findCustomerById(id: string): Observable<Customer> {
+    return this.http.get<Customer>(API_URL + '/' + id);
   }
 
-  saveCustomer(customer: Customer) {
-    this.customerList.push(customer);
+  saveCustomer(customer: Customer): Observable<Customer> {
+    return this.http.post<Customer>(API_URL, customer);
   }
 
-  updateCustomer(customer: Customer) {
-    const index = this.customerList.findIndex(item => item.id === customer.id);
-    if (index !== -1) {
-      this.customerList.splice(index, 1, customer);
-    }
+  updateCustomer(id: string, customer: Customer) {
+    return this.http.put<Customer>(API_URL + '/' + id, customer);
   }
 
   deleteCustomer(id: string) {
-    const index = this.customerList.findIndex(item => item.id === id);
-    if (index !== -1) {
-      this.customerList.splice(index, 1);
-    }
+    return this.http.delete<Customer>(API_URL + '/' + id);
   }
 
 }

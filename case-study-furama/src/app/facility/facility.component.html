@@ -8,17 +8,18 @@
   <div class="col-md-4" style="flex-basis: 25%" *ngFor="let facility of facilityList, index as i">
     <div style="padding: 10px">
       <div class="card" style="padding: 5px">
-        <img src="{{facility.img}}"/>
+        <img class="img-card" src="{{facility.img}}"/>
         <div class="card-body">
-          <h5 class="card-title">{{facility.name}}</h5>
-          <p class="card-text"></p>
-          <button type="button" class="btn btn-primary"
+          <h5 class="card-title text-center">{{facility.name}}</h5>
+          <div class="justify-content-center d-flex">
+          <button type="button" class="btn btn-primary mx-3"
                   data-bs-toggle="modal"
                   data-bs-target="#editFacilityModal" (click)="edit(facility.id)">Edit
           </button>
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                  data-bs-target="#deleteFacilityModal">Delete
+          <button type="button" class="btn btn-primary mx-3" data-bs-toggle="modal"
+                  data-bs-target="#deleteFacilityModal" (click)="delete(facility.id)">Delete
           </button>
+          </div>
         </div>
       </div>
     </div>
@@ -31,183 +32,8 @@
     Add new Facility
   </button>
 </div>
-<!--edit-->
-<div class='modal fade' id="editFacilityModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <form class="form-horizontal" *ngIf="editFacilityForm" [formGroup]="editFacilityForm" (ngSubmit)="onSubmitEdit()" novalidate>
-        <div class="modal-header justify-content-center m-2 p-0">
-          <h3 class="text-center text-primary">Edit Facility</h3>
-        </div>
 
-        <div class="modal-body">
-          <input hidden class="form-control" formControlName="id">
-          <input hidden class="form-control" formControlName="img">
-          <input hidden class="form-control" formControlName="facilityType">
-          <div class="m-2 row">
-            <label class="col-sm-4 col-form-label">Facility Name</label>
-            <div class="col-sm-8">
-              <input type="text" class="form-control" formControlName="name">
-              <div class="error"
-                   *ngIf="editFacilityForm.controls.name?.errors?.required && editFacilityForm.controls.name?.touched">
-                Không được để trống
-              </div>
-              <div class="error"
-                   *ngIf="editFacilityForm.controls.name?.errors?.pattern && editFacilityForm.controls.name?.touched">Tên
-                không được chứa số
-              </div>
-            </div>
-          </div>
-
-          <div class="m-2 row">
-            <label class="col-sm-4 col-form-label">Area</label>
-            <div class="col-sm-8">
-              <input type="number" class="form-control" formControlName="area">
-              <div class="error"
-                   *ngIf="editFacilityForm.controls.area?.errors?.required && editFacilityForm.controls.area?.touched">
-                Không được để trống
-              </div>
-
-            </div>
-          </div>
-
-          <div class="m-2 row">
-            <label class="col-sm-4 col-form-label">Cost</label>
-            <div class="col-sm-8">
-              <input class="form-control" formControlName="cost">
-              <div class="error"
-                   *ngIf="editFacilityForm.controls.cost?.errors?.required && editFacilityForm.controls.cost?.touched">
-                Không được để trống
-              </div>
-
-            </div>
-          </div>
-
-          <div class="m-2 row">
-            <label class="col-sm-4 col-form-label">Max People</label>
-            <div class="col-sm-8">
-              <input type="number" class="form-control" formControlName="maxPeople">
-              <div class="error"
-                   *ngIf="editFacilityForm.controls.maxPeople?.errors?.required && editFacilityForm.controls.maxPeople?.touched">
-                Không được để trống
-              </div>
-            </div>
-          </div>
-
-          <div class="m-2 row">
-            <label class="col-sm-4 col-form-label">Rent Type Name</label>
-            <div class="col-sm-8">
-              <select class="form-control" formControlName="rentType">
-                <option value="1">Ngày</option>
-                <option value="2">Tháng</option>
-                <option value="3">Giờ</option>
-              </select>
-              <div class="error"
-                   *ngIf="editFacilityForm.controls.rentType?.errors?.required && editFacilityForm.controls.rentType?.touched">
-                Không được để trống
-              </div>
-
-            </div>
-          </div>
-
-          <div class="m-2 row">
-            <label class="col-sm-4 col-form-label">Standard Room</label>
-            <div class="col-sm-8">
-              <input type="text" class="form-control" formControlName="standardRoom">
-              <div class="error"
-                   *ngIf="editFacilityForm.controls.standardRoom?.errors?.required && editFacilityForm.controls.standardRoom?.touched">
-                Không được để trống
-              </div>
-            </div>
-          </div>
-
-          <div class="m-2 row align-items-center">
-            <label class="col-sm-4 col-form-label">Description Other Convenience</label>
-            <div class="col-sm-8">
-              <input type="text" class="form-control" formControlName="descriptionOtherConvenience">
-              <div class="error"
-                   *ngIf="editFacilityForm.controls.descriptionOtherConvenience?.errors?.required && editFacilityForm.controls.descriptionOtherConvenience?.touched">
-                Không được để trống
-              </div>
-            </div>
-          </div>
-
-          <div class="m-2 row">
-            <label class="col-sm-4 col-form-label">Pool area</label>
-            <div class="col-sm-8">
-              <input type="number" value="0" class="form-control" formControlName="poolArea">
-              <div class="error"
-                   *ngIf="editFacilityForm.controls.poolArea?.errors?.required && editFacilityForm.controls.poolArea?.touched">
-                Không được để trống
-              </div>
-              <div class="error"
-                   *ngIf="editFacilityForm.controls.poolArea?.errors?.pattern && editFacilityForm.controls.poolArea?.touched">
-                Phải là số nguyên dương
-              </div>
-            </div>
-          </div>
-
-          <div class="m-2 row align-items-center">
-            <label class="col-sm-4 col-form-label">Number Of Floors</label>
-            <div class="col-sm-8">
-              <input type="number" class="form-control" formControlName="numberOfFloors">
-              <div class="error"
-                   *ngIf="editFacilityForm.controls.numberOfFloors?.errors?.required && editFacilityForm.controls.numberOfFloors?.touched">
-                Không được để trống
-              </div>
-              <div class="error"
-                   *ngIf="editFacilityForm.controls.numberOfFloors?.errors?.pattern && editFacilityForm.controls.numberOfFloors?.touched">
-                Phải là số nguyên dương
-              </div>
-
-            </div>
-          </div>
-
-          <div class="m-2 row">
-            <label class="col-sm-4 col-form-label">Facility free</label>
-            <div class="col-sm-8">
-              <input type="text" class="form-control" formControlName="facilityFree">
-              <div class="error"
-                   *ngIf="editFacilityForm.controls.facilityFree?.errors?.required && editFacilityForm.controls.facilityFree?.touched">
-                Không được để trống
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="modal-footer">
-          <a>
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          </a>
-          <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Save</button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
-<!--modal delete-->
-<div class="modal fade" id="deleteFacilityModal" tabindex="-1"
-     aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Delete facility</h5>
-      </div>
-      <form action="/facility/delete" method="post">
-        <div class="modal-body">
-          <input id="deleteId" name="deleteId" hidden>
-          <span>Are you sure you want to delete facility </span>
-          <span id="deleteName"></span>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-          <button type="submit" class="btn btn-primary">Delete</button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
-
+<!--add-->
 <div class="modal fade"
      id="addFacilityModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -383,4 +209,184 @@
     </div>
   </div>
 </div>
+
+<!--edit-->
+<div class='modal fade' id="editFacilityModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form class="form-horizontal" *ngIf="editFacilityForm" [formGroup]="editFacilityForm" (ngSubmit)="onSubmitEdit()" novalidate>
+        <div class="modal-header justify-content-center m-2 p-0">
+          <h3 class="text-center text-primary">Edit Facility</h3>
+        </div>
+
+        <div class="modal-body">
+          <input hidden class="form-control" formControlName="id">
+          <input hidden class="form-control" formControlName="img">
+          <input hidden class="form-control" formControlName="facilityType">
+          <div class="m-2 row">
+            <label class="col-sm-4 col-form-label">Facility Name</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" formControlName="name">
+              <div class="error"
+                   *ngIf="editFacilityForm.controls.name?.errors?.required && editFacilityForm.controls.name?.touched">
+                Không được để trống
+              </div>
+              <div class="error"
+                   *ngIf="editFacilityForm.controls.name?.errors?.pattern && editFacilityForm.controls.name?.touched">Tên
+                không được chứa số
+              </div>
+            </div>
+          </div>
+
+          <div class="m-2 row">
+            <label class="col-sm-4 col-form-label">Area</label>
+            <div class="col-sm-8">
+              <input type="number" class="form-control" formControlName="area">
+              <div class="error"
+                   *ngIf="editFacilityForm.controls.area?.errors?.required && editFacilityForm.controls.area?.touched">
+                Không được để trống
+              </div>
+
+            </div>
+          </div>
+
+          <div class="m-2 row">
+            <label class="col-sm-4 col-form-label">Cost</label>
+            <div class="col-sm-8">
+              <input class="form-control" formControlName="cost">
+              <div class="error"
+                   *ngIf="editFacilityForm.controls.cost?.errors?.required && editFacilityForm.controls.cost?.touched">
+                Không được để trống
+              </div>
+
+            </div>
+          </div>
+
+          <div class="m-2 row">
+            <label class="col-sm-4 col-form-label">Max People</label>
+            <div class="col-sm-8">
+              <input type="number" class="form-control" formControlName="maxPeople">
+              <div class="error"
+                   *ngIf="editFacilityForm.controls.maxPeople?.errors?.required && editFacilityForm.controls.maxPeople?.touched">
+                Không được để trống
+              </div>
+            </div>
+          </div>
+
+          <div class="m-2 row">
+            <label class="col-sm-4 col-form-label">Rent Type Name</label>
+            <div class="col-sm-8">
+              <select class="form-control" formControlName="rentType">
+                <option value="1">Ngày</option>
+                <option value="2">Tháng</option>
+                <option value="3">Giờ</option>
+              </select>
+              <div class="error"
+                   *ngIf="editFacilityForm.controls.rentType?.errors?.required && editFacilityForm.controls.rentType?.touched">
+                Không được để trống
+              </div>
+
+            </div>
+          </div>
+
+          <div id="formStandardRoomEdit"></div>
+          <div class="m-2 row">
+            <label class="col-sm-4 col-form-label">Standard Room</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" formControlName="standardRoom">
+              <div class="error"
+                   *ngIf="editFacilityForm.controls.standardRoom?.errors?.required && editFacilityForm.controls.standardRoom?.touched">
+                Không được để trống
+              </div>
+            </div>
+          </div>
+          <div></div>
+
+          <div class="m-2 row align-items-center" id="formDescriptionEdit">
+            <label class="col-sm-4 col-form-label">Description Other Convenience</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" formControlName="descriptionOtherConvenience">
+              <div class="error"
+                   *ngIf="editFacilityForm.controls.descriptionOtherConvenience?.errors?.required && editFacilityForm.controls.descriptionOtherConvenience?.touched">
+                Không được để trống
+              </div>
+            </div>
+          </div>
+
+          <div class="m-2 row" id="formPoolAreaEdit">
+            <label class="col-sm-4 col-form-label">Pool area</label>
+            <div class="col-sm-8">
+              <input type="number" value="0" class="form-control" formControlName="poolArea">
+              <div class="error"
+                   *ngIf="editFacilityForm.controls.poolArea?.errors?.required && editFacilityForm.controls.poolArea?.touched">
+                Không được để trống
+              </div>
+              <div class="error"
+                   *ngIf="editFacilityForm.controls.poolArea?.errors?.pattern && editFacilityForm.controls.poolArea?.touched">
+                Phải là số nguyên dương
+              </div>
+            </div>
+          </div>
+
+          <div class="m-2 row align-items-center" id="formNumberOfFloorsEdit">
+            <label class="col-sm-4 col-form-label">Number Of Floors</label>
+            <div class="col-sm-8">
+              <input type="number" class="form-control" formControlName="numberOfFloors">
+              <div class="error"
+                   *ngIf="editFacilityForm.controls.numberOfFloors?.errors?.required && editFacilityForm.controls.numberOfFloors?.touched">
+                Không được để trống
+              </div>
+              <div class="error"
+                   *ngIf="editFacilityForm.controls.numberOfFloors?.errors?.pattern && editFacilityForm.controls.numberOfFloors?.touched">
+                Phải là số nguyên dương
+              </div>
+
+            </div>
+          </div>
+
+          <div class="m-2 row" id="formFacilityFreeEdit">
+            <label class="col-sm-4 col-form-label">Facility free</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" formControlName="facilityFree">
+              <div class="error"
+                   *ngIf="editFacilityForm.controls.facilityFree?.errors?.required && editFacilityForm.controls.facilityFree?.touched">
+                Không được để trống
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <a>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </a>
+          <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!--modal delete-->
+<div class="modal fade" id="deleteFacilityModal" tabindex="-1"
+     aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Delete facility</h5>
+      </div>
+
+        <div class="modal-body">
+          <span>Are you sure you want to delete facility </span>
+          <span>{{deleteFacility?.name}}</span>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" (click)="onDelete()">Delete</button>
+        </div>
+
+    </div>
+  </div>
+</div>
+
 

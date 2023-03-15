@@ -1,0 +1,269 @@
+{
+  "customers": [
+    {
+      "id": "KH-0001",
+      "customerType": 1,
+      "name": "Dương Văn Hào",
+      "dateOfBirth": "2000-09-28",
+      "gender": true,
+      "idCard": "201943464",
+      "phoneNumber": "0905703782",
+      "email": "lexuanvu289@gmail.com",
+      "address": "K02/12 Đinh Tiên Hoàng, Thanh Khê, Đà Nẵng"
+    },
+    {
+      "id": "KH-0003",
+      "customerType": 2,
+      "name": "Nguyễn Văn Dương",
+      "dateOfBirth": "1994-09-19",
+      "gender": true,
+      "idCard": "201286494",
+      "phoneNumber": "0789123456",
+      "email": "nguyent289@gmail.com",
+      "address": "K14/15 Nguyễn Thị Thập, Thanh Khê, Đà Nẵng"
+    },
+    {
+      "id": "KH-0003",
+      "customerType": 3,
+      "name": "Nguyễn Thị Hà",
+      "dateOfBirth": "1998-12-02",
+      "gender": false,
+      "idCard": "2017564293",
+      "phoneNumber": "0789555872",
+      "email": "nguyent289@gmail.com",
+      "address": "K14/15 Nguyễn Thị Thập, Thanh Khê, Đà Nẵng"
+    },
+    {
+      "id": "KH-0004",
+      "name": "Hà Văn Tính",
+      "dateOfBirth": "1999-12-28",
+      "gender": true,
+      "idCard": "201946547",
+      "phoneNumber": "0907456123",
+      "email": "avg@gmail.com",
+      "address": "Đà Nẵng",
+      "customerType": 1
+    },
+    {
+      "id": "KH-0005",
+      "name": "Nguyễn Thị Chung",
+      "dateOfBirth": "2002-01-28",
+      "gender": false,
+      "idCard": "200048512",
+      "phoneNumber": "0904586754",
+      "email": "gnuyen@gmail.com",
+      "address": "Hà Nội",
+      "customerType": 1
+    }
+  ],
+  "customerTypes": [
+    {
+      "id": 1,
+      "name": "Diamond"
+    },
+    {
+      "id": 2,
+      "name": "Vip"
+    },
+    {
+      "id": 3,
+      "name": "Normal"
+    },
+    {
+      "id": 4,
+      "name": "Silver"
+    }
+  ],
+  "rentTypes": [
+    {
+      "id": 1,
+      "rentTypeName": "year"
+    },
+    {
+      "id": 2,
+      "rentTypeName": "month"
+    },
+    {
+      "id": 3,
+      "rentTypeName": "day"
+    },
+    {
+      "id": 4,
+      "rentTypeName": "hour"
+    }
+  ],
+  "facilityTypes": [
+    {
+      "id": 1,
+      "facilityTypeName": "villa"
+    },
+    {
+      "id": 2,
+      "facilityTypeName": "house"
+    },
+    {
+      "id": 3,
+      "facilityTypeName": "room"
+    }
+  ],
+  "facilities": [
+    {
+      "id": 1,
+      "name": "Studio Queen Script",
+      "area": 100,
+      "cost": 500000,
+      "maxPeople": 2,
+      "standardRoom": "",
+      "descriptionOtherConvenience": "",
+      "poolArea": 0,
+      "numberOfFloors": 0,
+      "facilityFree": "Massage",
+      "rentType": 3,
+      "facilityType": 3,
+      "img": "https://www.furama.com/images/FRF_studioroom_ibe4.jpg"
+    },
+    {
+      "name": "Superior Angular",
+      "area": 150,
+      "cost": 400000,
+      "maxPeople": 2,
+      "standardRoom": "",
+      "descriptionOtherConvenience": "",
+      "poolArea": 0,
+      "numberOfFloors": 0,
+      "facilityFree": "Massage",
+      "rentType": 4,
+      "facilityType": 3,
+      "img": "https://www.furama.com/images/ibe_Superior.jpg",
+      "id": 2
+    },
+    {
+      "id": 3,
+      "name": "Deluxe Ajax",
+      "area": 200,
+      "cost": 1000000,
+      "maxPeople": 3,
+      "standardRoom": "",
+      "descriptionOtherConvenience": "",
+      "poolArea": 0,
+      "numberOfFloors": 0,
+      "facilityFree": "Massage người mù",
+      "rentType": 4,
+      "facilityType": 3,
+      "img": "https://www.furama.com/images/ibe-Deluxe-Room.jpg"
+    },
+    {
+      "id": 4,
+      "name": "Villa Beach Back Jquery",
+      "area": 1200,
+      "cost": 7500000,
+      "maxPeople": 7,
+      "standardRoom": "Vip",
+      "descriptionOtherConvenience": "Có hồ bơi",
+      "poolArea": 40,
+      "numberOfFloors": 4,
+      "facilityFree": "",
+      "rentType": 3,
+      "facilityType": 1,
+      "img": "https://media-cdn.tripadvisor.com/media/vr-splice-j/02/8e/d7/b8.jpg"
+    },
+    {
+      "id": 7,
+      "name": "Family Room Static",
+      "area": 300,
+      "cost": 1500000,
+      "maxPeople": 4,
+      "standardRoom": "",
+      "descriptionOtherConvenience": "",
+      "poolArea": 0,
+      "numberOfFloors": 0,
+      "facilityFree": "Đánh bài quỳ vỏ mít",
+      "rentType": 3,
+      "facilityType": 3,
+      "img": "https://www.furama.com/images/ibe_Family.jpg"
+    },
+    {
+      "id": 8,
+      "name": "Premier Family Room",
+      "area": 300,
+      "cost": 1250000,
+      "maxPeople": 4,
+      "standardRoom": "",
+      "descriptionOtherConvenience": "",
+      "poolArea": 0,
+      "numberOfFloors": 0,
+      "facilityFree": "Dắt chó đi dạo",
+      "rentType": 3,
+      "facilityType": 3,
+      "img": "https://www.furama.com/images/FRF_studioroom_ibe9.jpg"
+    },
+    {
+      "id": 9,
+      "name": "Executive Suite",
+      "area": 150,
+      "cost": 350000,
+      "maxPeople": 2,
+      "standardRoom": "",
+      "descriptionOtherConvenience": "",
+      "poolArea": 0,
+      "numberOfFloors": 0,
+      "facilityFree": "Massage người mù",
+      "rentType": 4,
+      "facilityType": 3,
+      "img": "https://www.furama.com/images/ibe_frf_Executive-Suite.jpg"
+    },
+    {
+      "name": "Theme Suite Directive",
+      "area": 400,
+      "cost": 50000000,
+      "maxPeople": 3,
+      "standardRoom": "vip",
+      "descriptionOtherConvenience": "Có ghế tình yêu",
+      "poolArea": "",
+      "numberOfFloors": 1,
+      "facilityFree": "",
+      "rentType": 1,
+      "facilityType": 2,
+      "img": "https://www.furama.com/images/ibe_Safari_Suite.jpg",
+      "id": 10
+    }
+  ],
+  "contracts": [
+    {
+      "id": 1,
+      "customer": {
+        "name": "Nguyễn Thị Hào"
+      },
+      "facility": {
+        "name": "Villa beach front"
+      },
+      "startDate": "2023-09-08",
+      "endDate": "2023-09-12",
+      "deposit": 200000
+    },
+    {
+      "id": 1,
+      "customer": {
+        "name": "Phạm Xuân Diệu"
+      },
+      "facility": {
+        "name": "House princess 02"
+      },
+      "startDate": "2023-09-08",
+      "endDate": "2023-09-12",
+      "deposit": 300000
+    },
+    {
+      "id": 1,
+      "customer": {
+        "name": "Trương Đình Nghệ"
+      },
+      "facility": {
+        "name": "Room twin 02"
+      },
+      "startDate": "2023-09-08",
+      "endDate": "2023-09-12",
+      "deposit": 100000
+    }
+  ]
+}

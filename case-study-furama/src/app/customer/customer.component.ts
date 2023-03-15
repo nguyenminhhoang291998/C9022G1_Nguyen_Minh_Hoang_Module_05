@@ -14,10 +14,12 @@ export class CustomerComponent implements OnInit {
   }
 
   customerList: Customer[] = [];
-
   newCustomerForm: FormGroup;
   editCustomerForm: FormGroup;
+  editCustomerId: string;
   editCustomer: Customer;
+  deleteCustomerId: string;
+  deleteCustomer: Customer;
 
   ngOnInit(): void {
     this.getAll();
@@ -36,9 +38,10 @@ export class CustomerComponent implements OnInit {
   }
 
   getAll() {
-    this.customerList = this.customerService.getAll();
+    this.customerService.getAll().subscribe(customers => {
+      this.customerList = customers;
+    });
   }
-
 
   checkAge(control: AbstractControl) {
     return (new Date().getFullYear()) - new Date(control.value).getFullYear() >= 18 ? null : {ageError: true};
@@ -48,25 +51,48 @@ export class CustomerComponent implements OnInit {
     const customer = this.newCustomerForm.value;
     this.customerService.saveCustomer(customer);
     this.newCustomerForm.reset();
+    this.getAll();
   }
 
   edit(customerId: string) {
-    this.editCustomer = this.customerService.findCustomerById(customerId);
-    this.editCustomerForm = new FormGroup({
-      id: new FormControl(this.editCustomer.id, [Validators.required, Validators.pattern(/^KH-\d{4}$/)]),
-      name: new FormControl(this.editCustomer.name, [Validators.required]),
-      dayOfBirth: new FormControl(this.editCustomer.dayOfBirth, [Validators.required, this.checkAge]),
-      gender: new FormControl(this.editCustomer.gender, [Validators.required]),
-      idCard: new FormControl(this.editCustomer.idCard, [Validators.pattern(/\d{9}(\d{3})?/), Validators.required]),
-      phoneNumber: new FormControl(this.editCustomer.phoneNumber, [Validators.pattern(/^([(]84[)][+]|0)9[0-1]\d{7}$/), Validators.required]),
-      email: new FormControl(this.editCustomer.email, [Validators.email]),
-      address: new FormControl(this.editCustomer.address, [Validators.required]),
-      customerType: new FormControl(this.editCustomer.customerType, [Validators.required])
+    this.editCustomerId = customerId;
+    this.customerService.findCustomerById(customerId).subscribe(customer => {
+      this.editCustomer = customer;
+      this.editCustomerForm = new FormGroup({
+        id: new FormControl(this.editCustomer.id, [Validators.required, Validators.pattern(/^KH-\d{4}$/)]),
+        name: new FormControl(this.editCustomer.name, [Validators.required]),
+        dayOfBirth: new FormControl(this.editCustomer.dayOfBirth, [Validators.required, this.checkAge]),
+        gender: new FormControl(this.editCustomer.gender, [Validators.required]),
+        idCard: new FormControl(this.editCustomer.idCard, [Validators.pattern(/\d{9}(\d{3})?/), Validators.required]),
+        phoneNumber: new FormControl(this.editCustomer.phoneNumber, [Validators.pattern(/^([(]84[)][+]|0)9[0-1]\d{7}$/), Validators.required]),
+        email: new FormControl(this.editCustomer.email, [Validators.email]),
+        address: new FormControl(this.editCustomer.address, [Validators.required]),
+        customerType: new FormControl(this.editCustomer.customerType, [Validators.required])
+      });
     });
   }
 
   onSubmitEdit() {
     const customer = this.editCustomerForm.value;
-    this.customerService.updateCustomer(customer);
+    this.customerService.updateCustomer(this.editCustomerId, customer).subscribe(() => {
+      alert('Sửa thành công');
+      this.getAll();
+    });
+  }
+
+  delete(id: string) {
+    this.deleteCustomerId = id;
+    this.customerService.findCustomerById(id).subscribe(customer => {
+      this.deleteCustomer = customer;
+    });
+  }
+
+  onDelete() {
+    if (this.deleteCustomerId) {
+      this.customerService.deleteCustomer(this.deleteCustomerId).subscribe(() => {
+        alert('Xóa Thành Công.');
+        this.getAll();
+      });
+    }
   }
 }
