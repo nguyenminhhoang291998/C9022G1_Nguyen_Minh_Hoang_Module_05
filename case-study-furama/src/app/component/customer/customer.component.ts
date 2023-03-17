@@ -1,7 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {Customer} from '../model/customer';
+
 import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
-import {CustomerService} from '../service/customer.service';
+import {CustomerService} from '../../service/customer.service';
+import {Customer} from '../../model/customer';
+import {CustomerType} from '../../model/customer-type';
+import {CustomerTypeService} from '../../service/customer-type.service';
+
 
 @Component({
   selector: 'app-customer',
@@ -10,21 +14,24 @@ import {CustomerService} from '../service/customer.service';
 })
 export class CustomerComponent implements OnInit {
 
-  constructor(private customerService: CustomerService) {
+  constructor(private customerService: CustomerService,
+              private customerTypeService: CustomerTypeService) {
   }
 
   customerList: Customer[] = [];
+  customerTypeList: CustomerType[] = [];
   newCustomerForm: FormGroup;
   editCustomerForm: FormGroup;
-  editCustomerId: string;
+  editCustomerId: number;
   editCustomer: Customer;
-  deleteCustomerId: string;
+  deleteCustomerId: number;
   deleteCustomer: Customer;
 
   ngOnInit(): void {
+    this.getAllCustomerType();
     this.getAll();
     this.newCustomerForm = new FormGroup({
-      id: new FormControl('', [Validators.required, Validators.pattern(/^KH-\d{4}$/)]),
+      id: new FormControl('', [Validators.required]),
       name: new FormControl('', [Validators.required]),
       dayOfBirth: new FormControl('', [Validators.required, this.checkAge]),
       gender: new FormControl('', [Validators.required]),
@@ -42,6 +49,11 @@ export class CustomerComponent implements OnInit {
       this.customerList = customers;
     });
   }
+  getAllCustomerType() {
+    this.customerTypeService.getAll().subscribe(customerTypes => {
+      this.customerTypeList = customerTypes;
+    });
+  }
 
   checkAge(control: AbstractControl) {
     return (new Date().getFullYear()) - new Date(control.value).getFullYear() >= 18 ? null : {ageError: true};
@@ -54,12 +66,12 @@ export class CustomerComponent implements OnInit {
     this.getAll();
   }
 
-  edit(customerId: string) {
+  edit(customerId: number) {
     this.editCustomerId = customerId;
     this.customerService.findCustomerById(customerId).subscribe(customer => {
       this.editCustomer = customer;
       this.editCustomerForm = new FormGroup({
-        id: new FormControl(this.editCustomer.id, [Validators.required, Validators.pattern(/^KH-\d{4}$/)]),
+        id: new FormControl(this.editCustomer.id, [Validators.required]),
         name: new FormControl(this.editCustomer.name, [Validators.required]),
         dayOfBirth: new FormControl(this.editCustomer.dayOfBirth, [Validators.required, this.checkAge]),
         gender: new FormControl(this.editCustomer.gender, [Validators.required]),
@@ -80,7 +92,7 @@ export class CustomerComponent implements OnInit {
     });
   }
 
-  delete(id: string) {
+  delete(id: number) {
     this.deleteCustomerId = id;
     this.customerService.findCustomerById(id).subscribe(customer => {
       this.deleteCustomer = customer;

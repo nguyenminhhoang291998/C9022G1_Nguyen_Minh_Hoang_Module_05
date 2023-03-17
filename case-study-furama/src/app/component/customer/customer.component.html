@@ -72,12 +72,7 @@
               Type:</label></div>
             <div class="col-sm-8">
               <select class="form-control" id="newCustomerTypeId" formControlName="customerType">
-                <option value="0" disabled>Chọn loại khách hàng</option>
-                <option value="1">Diamond</option>
-                <option value="2">Platinum</option>
-                <option value="3">Gold</option>
-                <option value="4">Silver</option>
-                <option value="5">Member</option>
+                <option *ngFor="let customerType of customerTypeList" [ngValue]="customerType">{{customerType.name}}</option>
               </select>
               <div class="error"
                    *ngIf="newCustomerForm.controls.customerType?.errors?.required && newCustomerForm.controls.customerType?.touched">
@@ -94,11 +89,11 @@
                    *ngIf="newCustomerForm.controls.id?.errors?.required && newCustomerForm.controls.id?.touched">Mã
                 khách hàng không được để trống
               </div>
-              <div class="error"
-                   *ngIf="newCustomerForm.controls.id?.errors?.pattern && newCustomerForm.controls.id?.touched">Mã
-                Khách
-                hàng không đúng định dạng.
-              </div>
+<!--              <div class="error"-->
+<!--                   *ngIf="newCustomerForm.controls.id?.errors?.pattern && newCustomerForm.controls.id?.touched">Mã-->
+<!--                Khách-->
+<!--                hàng không đúng định dạng.-->
+<!--              </div>-->
             </div>
           </div>
           <div class="row form-group align-items-center m-2">
@@ -227,12 +222,7 @@
               Type:</label></div>
             <div class="col-sm-8">
               <select class="form-control" id="editCustomerTypeId" formControlName="customerType">
-                <option value="0" disabled>Chọn loại khách hàng</option>
-                <option value="1">Diamond</option>
-                <option value="2">Platinum</option>
-                <option value="3">Gold</option>
-                <option value="4">Silver</option>
-                <option value="5">Member</option>
+                <option *ngFor="let customerType of customerTypeList" [ngValue]="customerType">{{customerType.name}}</option>
               </select>
               <div class="error"
                    *ngIf="editCustomerForm.controls.customerType?.errors?.required && editCustomerForm.controls.customerType?.touched">
@@ -249,11 +239,11 @@
                    *ngIf="editCustomerForm.controls.id?.errors?.required && editCustomerForm.controls.id?.touched">Mã
                 khách hàng không được để trống
               </div>
-              <div class="error"
-                   *ngIf="editCustomerForm.controls.id?.errors?.pattern && editCustomerForm.controls.id?.touched">Mã
-                Khách
-                hàng không đúng định dạng.
-              </div>
+<!--              <div class="error"-->
+<!--                   *ngIf="editCustomerForm.controls.id?.errors?.pattern && editCustomerForm.controls.id?.touched">Mã-->
+<!--                Khách-->
+<!--                hàng không đúng định dạng.-->
+<!--              </div>-->
             </div>
           </div>
           <div class="row form-group align-items-center m-2">

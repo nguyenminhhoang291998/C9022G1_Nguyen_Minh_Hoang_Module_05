@@ -7,6 +7,8 @@ import {ProductListComponent} from "./product-list/product-list.component";
 import {ProductEditComponent} from "./product-edit/product-edit.component";
 import {ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
+import {SharedModule} from "../shared/shared.module";
+import {NgxPaginationModule} from "ngx-pagination";
 
 
 @NgModule({
@@ -19,7 +21,9 @@ import {HttpClientModule} from "@angular/common/http";
     CommonModule,
     ProductRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    SharedModule,
+    NgxPaginationModule
   ]
 })
 export class ProductModule { }

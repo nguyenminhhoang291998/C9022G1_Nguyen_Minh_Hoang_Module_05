@@ -1,0 +1,16 @@
+<form class="form-group" *ngIf="productFormEdit" [formGroup]="productFormEdit" (ngSubmit)="onSubmit(id)">
+  <div>
+    Name
+    <input type="text" class="form-control" placeholder="" formControlName="name" >
+  </div>
+  Category
+  <select formControlName="category">
+    <option *ngFor="let category of categoryList" [ngValue]="category">{{category.name}}</option>
+  </select>
+  <br>
+  <div>
+    Price
+    <input type="text" class="form-control" placeholder="" formControlName="price" >
+  </div>
+  <button>Lưu</button>
+</form>

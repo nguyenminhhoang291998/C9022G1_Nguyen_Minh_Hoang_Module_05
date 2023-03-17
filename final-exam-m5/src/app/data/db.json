@@ -1,0 +1,107 @@
+{
+  "diaDiem": [
+    {
+      "id": 1,
+      "ten": "Đà Nẵng"
+    },
+    {
+      "id": 2,
+      "ten": "Huế"
+    },
+    {
+      "id": 3,
+      "ten": "Quảng Trị"
+    },
+    {
+      "id": 4,
+      "ten": "Bình Định"
+    }
+  ],
+  "xe": [
+    {
+      "id": 1231,
+      "loaiXe": "Ghế99",
+      "tenNhaXe": "Mai Linh99",
+      "diemDi": {
+        "id": 4,
+        "ten": "Bình Định"
+      },
+      "diemDen": {
+        "id": 1,
+        "ten": "Đà Nẵng"
+      },
+      "soDienThoai": "0909999999",
+      "email": "mailin99@gmail",
+      "gioKhoiHanh": "01:20",
+      "gioDen": "20:00"
+    },
+    {
+      "id": 1222,
+      "loaiXe": "Ghế ngồi",
+      "tenNhaXe": "Hoàng Long",
+      "diemDi": {
+        "id": 2,
+        "ten": "Huế"
+      },
+      "diemDen": {
+        "id": 3,
+        "ten": "Quảng Trị"
+      },
+      "soDienThoai": "0907878787",
+      "email": "hoanglong@gmail.com",
+      "gioKhoiHanh": "11:20",
+      "gioDen": "20:00"
+    },
+    {
+      "id": 2311,
+      "loaiXe": "Giường nằm",
+      "tenNhaXe": "Mai Linh",
+      "diemDi": {
+        "id": 4,
+        "ten": "Bình Định"
+      },
+      "diemDen": {
+        "id": 1,
+        "ten": "Đà Nẵng"
+      },
+      "soDienThoai": "0907878787",
+      "email": "m@gmail.com",
+      "gioKhoiHanh": "12:20",
+      "gioDen": "20:00"
+    },
+    {
+      "id": 2333,
+      "loaiXe": "Giường nằm",
+      "tenNhaXe": "Mai Linh",
+      "diemDi": {
+        "id": 4,
+        "ten": "Bình Định"
+      },
+      "diemDen": {
+        "id": 1,
+        "ten": "Đà Nẵng"
+      },
+      "soDienThoai": "0907878787",
+      "email": "m@gmail.com",
+      "gioKhoiHanh": "12:20",
+      "gioDen": "20:00"
+    },
+    {
+      "id": 2444,
+      "loaiXe": "Giường nằm",
+      "tenNhaXe": "Mai Linh",
+      "diemDi": {
+        "id": 4,
+        "ten": "Bình Định"
+      },
+      "diemDen": {
+        "id": 1,
+        "ten": "Đà Nẵng"
+      },
+      "soDienThoai": "0907878787",
+      "email": "m@gmail.com",
+      "gioKhoiHanh": "12:20",
+      "gioDen": "20:00"
+    }
+  ]
+}

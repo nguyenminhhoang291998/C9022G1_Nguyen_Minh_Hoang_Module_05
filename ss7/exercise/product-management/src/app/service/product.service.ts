@@ -20,6 +20,15 @@ export class ProductService {
   getAll(): Observable<Product[]> {
     return this.http.get<Product[]>(API_URL + '/products');
   }
+  search(name: string): Observable<Product[]> {
+    return this.http.get<Product[]>(API_URL + '/products?name_like=' + name);
+  }
+  sortAsc(): Observable<Product[]> {
+    return this.http.get<Product[]>(API_URL + '/products?_sort=name');
+  }
+  sortDesc(): Observable<Product[]> {
+    return this.http.get<Product[]>(API_URL + '/products?_sort=name&_order=desc');
+  }
 
   saveProduct(product): Observable<Product> {
     return this.http.post<Product>(API_URL + '/products', product);
@@ -36,5 +45,6 @@ export class ProductService {
   findProductById(id: number): Observable<Product> {
     return this.http.get<Product>(`${API_URL}/products/${id}`)
   }
+
 
 }

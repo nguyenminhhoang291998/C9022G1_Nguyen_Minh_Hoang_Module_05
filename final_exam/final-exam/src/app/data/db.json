@@ -1,0 +1,45 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Iphone X",
+      "category": {
+        "id": 1,
+        "name": "Apple"
+      },
+      "price": 40000
+    },
+    {
+      "id": 2,
+      "name": "Iphone X11",
+      "category": {
+        "id": 1,
+        "name": "Apple"
+      },
+      "price": "4000023123"
+    },
+    {
+      "id": 4,
+      "name": "1213",
+      "category": {
+        "id": 1,
+        "name": "Apple"
+      },
+      "price": "123"
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "Apple"
+    },
+    {
+      "id": 2,
+      "name": "SamSung"
+    },
+    {
+      "id": 3,
+      "name": "Xiaomi"
+    }
+  ]
+}

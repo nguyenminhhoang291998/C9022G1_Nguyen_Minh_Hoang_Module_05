@@ -41,13 +41,13 @@
       }
     },
     {
-      "id": 5,
-      "name": "1231111",
-      "price": 123,
-      "description": "123222",
+      "id": 9,
+      "name": "AAA",
+      "price": 23123,
+      "description": "1232",
       "category": {
-        "id": 2,
-        "name": "Xiaomi"
+        "id": 1,
+        "name": "Apple"
       }
     }
   ],

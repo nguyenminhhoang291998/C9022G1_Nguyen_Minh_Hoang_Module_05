@@ -1,0 +1,24 @@
+<table class="table table-info">
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Product Type</th>
+    <th>Price</th>
+    <th>Sửa</th>
+    <th>Xóa</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let product of productList, index as i">
+    <td scope="row">{{i + 1}}</td>
+    <td>{{product.name}}</td>
+    <td>{{product.category.name}}</td>
+    <td>{{product.price}}</td>
+    <td><a class="btn btn-primary" routerLink="/product/edit/{{product.id}}" role="button">Edit</a></td>
+    <td><a class="btn btn-primary" routerLink="/product/delete/{{product.id}}" role="button">Delete</a></td>
+  </tr>
+  </tbody>
+</table>
+<td><a class="btn btn-primary" routerLink="/product/create" role="button">Create</a></td>
+

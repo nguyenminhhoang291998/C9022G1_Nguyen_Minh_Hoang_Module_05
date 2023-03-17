@@ -34,7 +34,6 @@ export class RegisterComponent implements OnInit {
   }
 
   passwordValidator(formControl: FormControl) {
-    debugger
     return formControl.get('password').value === formControl.get('confirmPassword').value
       ? null : {mismatch: true};
   }

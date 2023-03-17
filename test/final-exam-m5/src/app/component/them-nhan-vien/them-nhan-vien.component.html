@@ -1,0 +1,49 @@
+<h2 style="text-align: center; color: blue">Thêm nhân viên</h2>
+
+<div class="d-flex justify-content-center">
+  <form *ngIf="nhanVienForm" [formGroup]="nhanVienForm" (ngSubmit)="onSubmit()">
+    <table>
+      <tr>
+        <td>Mã:</td>
+        <td><input type="text" class="form-control" formControlName="id"></td>
+        <div *ngIf="nhanVienForm.controls.id?.errors?.required && nhanVienForm.controls.id?.touched">Không được để trống</div>
+      </tr>
+      <tr>
+        <td>Tên</td>
+        <td><input type="text" class="form-control" formControlName="ten"></td>
+        <div *ngIf="nhanVienForm.controls.ten?.errors?.required && nhanVienForm.controls.ten?.touched">Không được để trống</div>
+      </tr>
+      <tr>
+        <td>Giới tính</td>
+        <td><input type="radio" formControlName="gioiTinh" checked [value]="true">Nam
+          <input type="radio" class="radio" formControlName="gioiTinh" [value]="false">Nữ
+        </td>
+        <div *ngIf="nhanVienForm.controls.gioiTinh?.errors?.required && nhanVienForm.controls.gioiTinh?.touched">Không được để trống</div>
+
+      </tr>
+      <tr>
+        <td>Chức vụ</td>
+        <td><select class="form-control" formControlName="chucVu" [ngModel]="danhSachChucVu[0]">
+          <option *ngFor="let chucVu of danhSachChucVu" [ngValue]="chucVu">{{chucVu.ten}}</option>
+        </select>
+          <div *ngIf="nhanVienForm.controls.chucVu?.errors?.required && nhanVienForm.controls.chucVu?.touched">Không được để trống</div>
+
+        </td>
+
+      </tr>
+      <tr>
+        <td>Ngày sinh</td>
+        <td><input type="date" class="form-control" formControlName="ngaySinh"></td>
+        <div *ngIf="nhanVienForm.controls.ngaySinh?.errors?.required && nhanVienForm.controls.ngaySinh?.touched">Không được để trống</div>
+        <div *ngIf="nhanVienForm.controls.ngaySinh?.errors?.errorAge && nhanVienForm.controls.ngaySinh?.touched">Tuổi lớn hơn 18</div>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <button class="btn btn-success" [disabled]="nhanVienForm.invalid">Tạo mới</button>
+        </td>
+      </tr>
+    </table>
+  </form>
+
+</div>

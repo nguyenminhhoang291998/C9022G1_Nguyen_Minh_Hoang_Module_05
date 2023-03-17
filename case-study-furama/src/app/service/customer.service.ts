@@ -3,7 +3,8 @@ import {Customer} from '../model/customer';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 
-const API_URL = 'http://localhost:3000/customers';
+// const API_URL = 'http://localhost:3000/customers';
+const API_URL = 'http://localhost:8080/api';
 
 @Injectable({
   providedIn: 'root'
@@ -14,22 +15,22 @@ export class CustomerService {
   }
 
   getAll(): Observable<Customer[]> {
-    return this.http.get<Customer[]>(API_URL);
+    return this.http.get<Customer[]>(API_URL + '/customers');
   }
 
-  findCustomerById(id: string): Observable<Customer> {
-    return this.http.get<Customer>(API_URL + '/' + id);
+  findCustomerById(id: number): Observable<Customer> {
+    return this.http.get<Customer>(API_URL + '/customer/' + id);
   }
 
   saveCustomer(customer: Customer): Observable<Customer> {
-    return this.http.post<Customer>(API_URL, customer);
+    return this.http.post<Customer>(API_URL + '/save', customer);
   }
 
-  updateCustomer(id: string, customer: Customer) {
-    return this.http.put<Customer>(API_URL + '/' + id, customer);
+  updateCustomer(id: number, customer: Customer) {
+    return this.http.put<Customer>(API_URL + '/update', customer);
   }
 
-  deleteCustomer(id: string) {
+  deleteCustomer(id: number) {
     return this.http.delete<Customer>(API_URL + '/' + id);
   }
 

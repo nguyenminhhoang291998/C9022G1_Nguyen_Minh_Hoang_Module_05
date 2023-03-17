@@ -1,0 +1,48 @@
+{
+  "danhSachNhanVien": [
+    {
+      "id": "NV-002",
+      "ten": "Nguyễn Văn D",
+      "gioiTinh": true,
+      "chucVu": {
+        "ma": 3,
+        "ten": "Giám đốc"
+      },
+      "ngaySinh": "1998-09-12"
+    },
+    {
+      "id": "NV-003",
+      "ten": "Nguyễn Thị C",
+      "gioiTinh": false,
+      "chucVu": {
+        "ma": 3,
+        "ten": "Giám đốc"
+      },
+      "ngaySinh": "1999-09-12"
+    },
+    {
+      "id": "NV-001",
+      "ten": "Nguyễn Văn D",
+      "gioiTinh": true,
+      "chucVu": {
+        "ma": 1,
+        "ten": "Dọn dẹp"
+      },
+      "ngaySinh": "1999-09-12"
+    }
+  ],
+  "danhSachChucVu": [
+    {
+      "ma": 1,
+      "ten": "Dọn dẹp"
+    },
+    {
+      "ma": 2,
+      "ten": "Trợ Lý"
+    },
+    {
+      "ma": 3,
+      "ten": "Giám đốc"
+    }
+  ]
+}

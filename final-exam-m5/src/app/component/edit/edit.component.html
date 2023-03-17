@@ -1,0 +1,83 @@
+<h2 style="text-align: center; color: blue">Sửa thông tin xe</h2>
+<div class="d-flex justify-content-center">
+  <form *ngIf="coachForm" [formGroup]="coachForm" (ngSubmit)="onSubmit(id)">
+    <table>
+      <tr>
+        <td>Số xe:</td>
+        <td><input type="number" class="form-control" formControlName="id" readonly></td>
+      </tr>
+      <tr>
+        <td>Loại xe</td>
+        <td><select class="form-control" formControlName="coachType">
+          <option *ngFor="let coachType of coachTypes" [ngValue]="coachType">{{coachType.name}}</option>
+        </select>
+        </td>
+      </tr>
+      <div class="error" *ngIf="coachForm.controls.coachType?.errors?.required && coachForm.controls.coachType?.touched ">Không được để trống</div>
+      <tr>
+        <td>Tên nhà Coach</td>
+        <td><input type="text" class="form-control" formControlName="companyName"></td>
+      </tr>
+      <div class="error" *ngIf="coachForm.controls.companyName?.errors?.required && coachForm.controls.companyName?.touched ">Không được để trống</div>
+
+      <tr>
+        <td>Điểm đi</td>
+        <td>
+          <select class="form-control" formControlName="departure">
+            <option *ngFor="let location of locations" [ngValue]="location">{{location.name}}</option>
+          </select>
+        </td>
+      </tr>
+      <div class="error" *ngIf="coachForm.controls.departure?.errors?.required && coachForm.controls.departure?.touched ">Không được để trống</div>
+
+      <tr>
+        <td>Điểm đến</td>
+        <td>
+          <select class="form-control" formControlName="destination">
+            <option *ngFor="let location of locations" [ngValue]="location">{{location.name}}</option>
+          </select>
+        </td>
+      </tr>
+      <div class="error" *ngIf="coachForm.controls.destination?.errors?.required && coachForm.controls.destination?.touched ">Không được để trống</div>
+
+
+      <tr>
+        <td>Số điện thoại</td>
+        <td><input type="text" class="form-control" formControlName="phoneNumber"></td>
+      </tr>
+      <div class="error" *ngIf="coachForm.controls.phoneNumber?.errors?.required && coachForm.controls.phoneNumber?.touched ">Không được để trống</div>
+      <div class="error" *ngIf="coachForm.controls.phoneNumber?.errors?.pattern && coachForm.controls.phoneNumber?.touched ">Không đúng định dạng</div>
+
+      <tr>
+        <td>Email</td>
+        <td><input type="email" class="form-control" formControlName="email"></td>
+      </tr>
+      <div class="error" *ngIf="coachForm.controls.email?.errors?.required && coachForm.controls.email?.touched ">Không được để trống</div>
+      <div class="error" *ngIf="coachForm.controls.email?.errors?.email && coachForm.controls.email?.touched ">Không đúng định dạng</div>
+
+      <tr>
+        <td>Giờ khởi hành</td>
+        <td><input type="time" class="form-control" formControlName="departureTime"></td>
+      </tr>
+      <div class="error" *ngIf="coachForm.controls.departureTime?.errors?.required && coachForm.controls.departureTime?.touched ">Không được để trống</div>
+      <div class="error" *ngIf="coachForm.controls.departureTime?.errors?.departureTimeError && coachForm.controls.departureTime?.touched ">Phải lớn hơn 05:00</div>
+      <tr>
+        <td>Giờ đến</td>
+        <td><input type="time" class="form-control" formControlName="destinationTime"></td>
+      </tr>
+      <div class="error" *ngIf="coachForm.controls.destinationTime?.errors?.required && coachForm.controls.destinationTime?.touched ">Không được để trống</div>
+      <div class="error" *ngIf="coachForm.controls.departureTime?.errors?.destinationTimeError && coachForm.controls.departureTime?.touched ">Phải nhỏ hơn 23:00</div>
+
+      <tr>
+        <td>
+            <a routerLink="/" class="mx-4">
+              <button class="btn btn-secondary mx-2" >Quay Về</button>
+            </a>
+        </td>
+        <td>
+          <button [disabled]="coachForm.invalid" class="btn btn-success mx-2">Sửa</button>
+        </td>
+      </tr>
+    </table>
+  </form>
+</div>

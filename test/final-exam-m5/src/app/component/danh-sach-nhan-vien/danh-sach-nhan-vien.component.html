@@ -1,0 +1,74 @@
+
+<div class="row">
+  <div class="col-md-7">
+    <h1 style="margin-left: 30%">Danh sách nhân viên</h1>
+  </div>
+  <div class="col-md-5 p-2 d-flex justify-content-center">
+    <input type="search" class="form-control" #searchInput>
+    <select class="form-control" #chucvu style="width: 200px">
+      <option value="0">Tất cả chức vụ</option>
+      <option *ngFor="let chucVu of danhSachChucVu" value="{{chucVu.ma}}">{{chucVu.ten}}</option>
+    </select>
+    <button class="btn btn-primary" (click)="search(searchInput.value, chucvu.value)">Search</button>
+  </div>
+</div>
+
+<table class="table bg-light">
+  <tr>
+    <td>STT</td>
+    <td>Mã</td>
+    <td>Tên</td>
+    <td>Giới tính</td>
+    <td>Chức vụ</td>
+    <td>Tuổi</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+    <tr *ngFor="let nhanVien of danhSachNhanVien | paginate: { itemsPerPage: 3, currentPage: page }, index as i" >
+  <td>{{i + 1}}</td>
+  <td>{{nhanVien.id}}</td>
+  <td>{{nhanVien.ten}}</td>
+  <td>
+    <span *ngIf="nhanVien.gioiTinh">Nam</span>
+    <span *ngIf="!nhanVien.gioiTinh">Nữ</span>
+  </td>
+  <td>{{nhanVien.chucVu.ten}}</td>
+  <td>{{nhanVien.ngaySinh}}</td>
+  <td><a routerLink="/sua/{{nhanVien.id}}">
+    <button class="btn btn-success">Sửa</button>
+  </a></td>
+  <td><a routerLink="/xoa/{{nhanVien.id}}">
+    <button class="btn btn-success">Xóa</button>
+  </a></td>
+    <td>
+    <button class="btn btn-primary bg-danger" data-bs-toggle="modal" (click)="delete(nhanVien.id)"
+            data-bs-target="#deleteModal">Delete
+    </button>
+    </td>
+    </tr>
+
+</table>
+<div class="has-text-centered">
+  <pagination-controls (pageChange)="page = $event"></pagination-controls>
+</div>
+<a class="btn btn-primary" routerLink="/them" role="button">Thêm</a>
+
+
+<div class="modal fade" id="deleteModal" tabindex="-1"
+     aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Delete customer</h5>
+      </div>
+      <div class="modal-body">
+        <span>Bạn muốn xóa nhân viên {{nhanVienDelete?.ten}} </span>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-primary" (click)="onDelete()" data-bs-dismiss="modal">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>

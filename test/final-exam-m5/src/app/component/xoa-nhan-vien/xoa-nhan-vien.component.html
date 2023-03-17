@@ -1,0 +1,36 @@
+<h1>Sửa nhân viên</h1>
+<form *ngIf="xoaNhanVienForm" [formGroup]="xoaNhanVienForm" (ngSubmit)="onSubmit()">
+  <table>
+    <tr>
+      <td>Mã:</td>
+      <td><input type="text" class="form-control" formControlName="id" readonly></td>
+    </tr>
+    <tr>
+      <td>Tên</td>
+      <td><input type="text" class="form-control" formControlName="ten" readonly></td>
+    </tr>
+    <tr>
+      <td>Giới tính</td>
+      <td><input type="radio" formControlName="gioiTinh" checked [value]="true">Nam
+        <input type="radio" class="radio" formControlName="gioiTinh" [value]="false">Nữ
+      </td>
+    </tr>
+    <tr>
+      <td>Chức vụ</td>
+      <td><select class="form-control" formControlName="chucVu">
+        <option *ngFor="let chucVu of danhSachChucVu" [ngValue]="chucVu">{{chucVu.ten}}</option>
+      </select>
+      </td>
+    </tr>
+    <tr>
+      <td>Ngày sinh</td>
+      <td><input type="date" class="form-control" formControlName="ngaySinh" readonly></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        <button class="btn btn-success">Xóa</button>
+      </td>
+    </tr>
+  </table>
+</form>
